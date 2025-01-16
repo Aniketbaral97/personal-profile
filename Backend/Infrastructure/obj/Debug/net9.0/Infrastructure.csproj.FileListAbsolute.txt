@@ -1,0 +1,16 @@
+D:\Personal Projects\personal-profile\Backend\Infrastructure\bin\Debug\net9.0\Infrastructure.deps.json
+D:\Personal Projects\personal-profile\Backend\Infrastructure\bin\Debug\net9.0\Infrastructure.dll
+D:\Personal Projects\personal-profile\Backend\Infrastructure\bin\Debug\net9.0\Infrastructure.pdb
+D:\Personal Projects\personal-profile\Backend\Infrastructure\bin\Debug\net9.0\Domain.dll
+D:\Personal Projects\personal-profile\Backend\Infrastructure\bin\Debug\net9.0\Domain.pdb
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.csproj.AssemblyReference.cache
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.AssemblyInfoInputs.cache
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.AssemblyInfo.cs
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.sourcelink.json
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastr.15EFFBFE.Up2Date
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.dll
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\refint\Infrastructure.dll
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
+D:\Personal Projects\personal-profile\Backend\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll
