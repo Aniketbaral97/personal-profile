@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using Application.DependencyInjection;
 using Infrastructure.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ builder.Services.AddSwaggerGen(opt =>
 });
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAppDbContextAndIdentity(builder.Configuration);
+builder.Services.ConfigureAppAplication(builder.Configuration);
+builder.Services.ConfigureAppInfrastructure(builder.Configuration);
 builder.Services.AddOpenApi();
 
 var app = builder.Build();

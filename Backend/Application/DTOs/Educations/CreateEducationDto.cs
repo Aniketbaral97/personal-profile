@@ -8,6 +8,7 @@ public class CreateEducationDto
     public required string Degree { get; set; }
     public required string Duration { get; set; }
     public required string Description { get; set; }
+    public bool IsCurrent { get; set; }
     public required GradingTypes GradingType { get; set; }
     public required double Grading { get; set; }
     public DateOnly? StartDate { get; set; }

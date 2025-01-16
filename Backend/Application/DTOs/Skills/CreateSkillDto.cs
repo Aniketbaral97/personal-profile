@@ -8,7 +8,7 @@ namespace Application.DTOs.Skills;
 
 public class CreateSkillDto
 {
-    public required SkillTypes Type { get; set; }
+    public SkillTypes Type { get; set; } =SkillTypes.Other;
     public required string Skill { get; set; }
-    public required SkillLevels Level { get; set; }
+    public SkillLevels Level { get; set; } = SkillLevels.Beginner;
 }

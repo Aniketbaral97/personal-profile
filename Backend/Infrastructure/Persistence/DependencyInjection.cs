@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +11,19 @@ namespace Infrastructure.Persistence;
 
 public static class DependencyInjection
 {
+
+    public static IServiceCollection ConfigureAppInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration
+    ){
+        services.AddScoped<IPersonalInfoRepository, PersonalInfoRepository>();
+        services.AddScoped<IEducationRepository, EducationRepository>();
+        services.AddScoped<IExperienceRepository, ExperienceRepository>();
+        services.AddScoped<ISkillRepository, SkillRepository>();
+        services.AddScoped<ISupportUrlRepository, SupportUrlRepository>();
+
+        return services;
+    }
     public static IServiceCollection AddAppDbContextAndIdentity(
         this IServiceCollection services,
         IConfiguration configuration
