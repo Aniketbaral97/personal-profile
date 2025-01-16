@@ -1,0 +1,68 @@
+# Ignore Visual Studio temporary files, build results, and
+# common configuration files
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific folders
+.vscode/
+.idea/
+.vs/
+_ReSharper*/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+# Uncomment if you have nuget.exe that should be ignored
+# nuget.exe
+
+# DotNetCore
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework
+*.ldb
+*.mdf
+*.ndf
+*.sdf
+*.sqlite
+*.db
+
+# JetBrains Rider
+.idea/
+.idea_modules/
+
+# Visual Studio Code
+.vscode/*
+.history/
+
+# Other files
+*.pyc
+*.pyo
+*.sublime-workspace
+*.sublime-project
+*.tmproj
+*.c9/
