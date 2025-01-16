@@ -59,4 +59,23 @@ public static class DependencyInjection
             .AddEntityFrameworkStores<AppIdentityDbContext>();
         return services;
     }
+
+    public static IServiceCollection AddKpoDataServicesAndRepositories(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        var settings = new ConnectionSettings
+        {
+            IdentityConnection = configuration.GetConnectionString("IdentityConnection")!,
+            DefaultConnection = configuration.GetConnectionString("DefaultConnection")!
+        };
+        services.AddSingleton(settings);
+        return services;
+    }
+    public class ConnectionSettings
+    {
+        public string IdentityConnection {get; set;}="";
+        public string DefaultConnection {get; set;}="";
+    }
 }

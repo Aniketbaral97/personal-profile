@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
 using Application.DependencyInjection;
 using Infrastructure.Persistence;
+using WebApi.EndPoints;
+using WebApi.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -32,19 +34,24 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+builder.Services.AddHttpClient();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCorsService(builder.Configuration);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddAppDbContextAndIdentity(builder.Configuration);
 builder.Services.ConfigureAppAplication(builder.Configuration);
 builder.Services.ConfigureAppInfrastructure(builder.Configuration);
-builder.Services.AddOpenApi();
+builder.Services.AddKpoDataServicesAndRepositories(builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 
@@ -66,7 +73,7 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
-
+app.AddAppEndPoints();
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
