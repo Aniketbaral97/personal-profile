@@ -10,3 +10,4 @@ D:\Personal Projects\personal-profile\Backend\Domain\obj\Debug\net9.0\Domain.dll
 D:\Personal Projects\personal-profile\Backend\Domain\obj\Debug\net9.0\refint\Domain.dll
 D:\Personal Projects\personal-profile\Backend\Domain\obj\Debug\net9.0\Domain.pdb
 D:\Personal Projects\personal-profile\Backend\Domain\obj\Debug\net9.0\ref\Domain.dll
+D:\Personal Projects\personal-profile\Backend\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
