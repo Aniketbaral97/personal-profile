@@ -1,9 +1,14 @@
-namespace Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Domain.Enums;
 
-public class Experience : BaseEntity
+namespace Application.DTOs.Experiences;
+
+public class CreateExperienceDto
 {
     public required string Title { get; set; }
-    public Guid PersonalInfoId { get; set; }
     public required string Company { get; set; }
     public required string Position { get; set; }
     public required string Duration { get; set; }
@@ -12,3 +17,6 @@ public class Experience : BaseEntity
     public required DateOnly StartDate { get; set; }
     public DateOnly? EndDate { get; set; }
 }
+
+
+

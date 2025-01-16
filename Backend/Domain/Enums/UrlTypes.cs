@@ -7,5 +7,6 @@ public enum UrlTypes
     Facebook = 3,
     Twitter = 4,
     Github = 5,
-    Other = 6
+    PersonalProject = 10,
+    Other = 20
 }
