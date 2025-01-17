@@ -1,0 +1,18 @@
+<div *ngIf="skills" class="main-content">
+    <div class="section1 p-30" id="Skills">
+        <div class="sec-title">
+            <div class="pg-sub-title">Skills</div>
+            <div class="pg-title">My Skills</div>
+        </div>
+        <div *ngFor="let skill of skills.skills" class="skill-item">
+            <div *ngIf="skill.skill" class="skill-value">
+                <div class="skill-name">{{getSkillTypesEnumKey(skill.type)}} {{skill.skill}}</div>
+                <div class="skill-level">
+                    <div class="progress-bar">
+                        <div [style.width]="getSkillLevelPercentage(skill.level) + '%'" class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

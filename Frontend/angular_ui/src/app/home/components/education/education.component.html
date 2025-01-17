@@ -1,0 +1,20 @@
+<div *ngIf="educations" class="main-content">
+    <div class="section1 p-30" id="Education">
+        <div class="sec-title">
+            <div class="pg-sub-title">Education</div>
+            <div class="pg-title">My Educational Background</div>
+        </div>
+        <div *ngFor="let education of educations.educations" class="education-item">
+            <div *ngIf="education.institution" class="edu-value">{{education.institution}}</div>
+            <div *ngIf="education.degree" class="edu-value">{{education.degree}}</div>
+            <div *ngIf="education.duration" class="edu-value">
+                {{education.duration}} 
+                <span *ngIf="education.isCurrent" class="edu-current">(Present)</span>
+            </div>
+            <div *ngIf="education.description" class="edu-value">{{education.description}}</div>
+            <div *ngIf="education.grading" class="edu-value">
+                {{education.grading}} {{getGradingTypesEnumKey(education.gradingType)}}
+            </div>
+        </div>
+    </div>
+</div>

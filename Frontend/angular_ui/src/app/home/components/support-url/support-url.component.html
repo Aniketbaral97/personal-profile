@@ -1,0 +1,16 @@
+<div *ngIf="supportUrls" class="main-content">
+    <div class="section1 p-30" id="SupportUrls">
+        <div class="sec-title">
+            <div class="pg-sub-title">Support URLs</div>
+            <div class="pg-title">Support & Resources</div>
+        </div>
+        <div *ngFor="let supportUrl of supportUrls.supportUrls" class="support-url-item">
+            <div *ngIf="supportUrl.type" class="support-url-value">
+                <div class="support-url-type">{{getUrlTypesEnumKey(supportUrl.type)}}</div>
+            </div>
+            <div *ngIf="supportUrl.url" class="support-url-link">
+                <a [href]="supportUrl.url" target="_blank">{{supportUrl.url}}</a>
+            </div>
+        </div>
+    </div>
+</div>

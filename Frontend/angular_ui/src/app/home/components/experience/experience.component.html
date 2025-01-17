@@ -1,0 +1,17 @@
+<div *ngIf="experiences" class="main-content">
+    <div class="section1 p-30" id="Experience">
+        <div class="sec-title">
+            <div class="pg-sub-title">Experience</div>
+            <div class="pg-title">My Professional Experience</div>
+        </div>
+        <div *ngFor="let experience of experiences.experiences" class="experience-item">
+            <div *ngIf="experience.company" class="exp-value">{{experience.company}}</div>
+            <div *ngIf="experience.position" class="exp-value">{{experience.position}}</div>
+            <div *ngIf="experience.duration" class="exp-value">
+                {{experience.duration}} 
+                <span *ngIf="experience.isCurrent" class="exp-current">(Present)</span>
+            </div>
+            <div *ngIf="experience.description" class="exp-value">{{experience.description}}</div>
+        </div>
+    </div>
+</div>

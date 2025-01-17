@@ -1,0 +1,57 @@
+/* Main Section for Support URLs */
+.main-content {
+    font-family: Arial, sans-serif;
+}
+
+/* Section Styling */
+.section1 {
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.sec-title {
+    margin-bottom: 20px;
+}
+
+.pg-sub-title {
+    font-size: 18px;
+    color: #888;
+    font-weight: 600;
+}
+
+.pg-title {
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Support URL Item Styling */
+.support-url-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.support-url-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.support-url-type {
+    font-weight: bold;
+}
+
+.support-url-link a {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.support-url-link a:hover {
+    text-decoration: underline;
+}
