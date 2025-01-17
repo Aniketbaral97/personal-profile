@@ -12,7 +12,7 @@ public static class ExperienceEndpoints
     {
         RouteGroupBuilder group = routes.MapGroup("/api/experience")
         .WithTags("Experience")
-        .RequireAuthorization();
+         ;
 
         group.MapGet("/{id:guid}", async (Guid id,
         IExperienceService repo) =>

@@ -12,7 +12,7 @@ public static class EducationEndpoints
     {
         RouteGroupBuilder group = routes.MapGroup("/api/education")
         .WithTags("Education")
-        .RequireAuthorization();
+         ;
 
         group.MapGet("/{id:guid}", async (Guid id,
         IEducationService repo) =>

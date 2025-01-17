@@ -44,7 +44,7 @@ public class PersonalInfoRepository : IPersonalInfoRepository
     public async Task<PersonalInfoDto?> GetPersonalInfoByIdAsync(Guid id)
     {
         return await _context.PersonalInfos.Where(x=>x.Id==id).Select(x=>new PersonalInfoDto(){
-             Firstname = x.Firstname,
+            Firstname = x.Firstname,
             Lastname = x.Lastname,
             Middlename = x.Middlename,
             Designations = x.Designations,
@@ -54,6 +54,7 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             DateOfBirth = x.DateOfBirth,
             Gender = x.Gender,
             ShortText = x.ShortText,
+            Id = x.Id
         }).FirstOrDefaultAsync() ?? null;
     }
 

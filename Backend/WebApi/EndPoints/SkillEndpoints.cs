@@ -12,7 +12,7 @@ public static class SkillEndpoints
     {
         RouteGroupBuilder group = routes.MapGroup("/api/skill")
         .WithTags("Skill")
-        .RequireAuthorization();
+         ;
 
         group.MapGet("/{id:guid}", async (Guid id,
         ISkillService repo) =>

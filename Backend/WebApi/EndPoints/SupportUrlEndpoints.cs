@@ -12,7 +12,7 @@ public static class SupportUrlEndpoints
     {
         RouteGroupBuilder group = routes.MapGroup("/api/support-url")
         .WithTags("SupportUrl")
-        .RequireAuthorization();
+         ;
 
         group.MapGet("/{id:guid}", async (Guid id,
         ISupportUrlService repo) =>

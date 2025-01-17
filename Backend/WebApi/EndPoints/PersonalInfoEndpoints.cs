@@ -13,7 +13,7 @@ public static class PersonalInfoEndpoints
     {
         RouteGroupBuilder group = routes.MapGroup("/api/personal-info")
         .WithTags("PersonalInfo")
-        .RequireAuthorization();
+         ;
 
         group.MapGet("/{id:guid}", async (Guid id,
         IPersonalInfoService repo) =>
