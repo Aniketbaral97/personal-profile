@@ -9,7 +9,7 @@ import { EnumService } from '../../../services/enum_service';
   selector: 'app-skill',
   imports: [CommonModule],
   templateUrl: './skill.component.html',
-  styleUrl: './skill.component.scss'
+  styleUrls: ['./skill.component.scss', '../../../app.component.scss']
 })
 export class SkillComponent implements OnInit{
   skills: GetManySkillDto={skills:[]}

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-experience',
   imports: [CommonModule],
   templateUrl: './experience.component.html',
-  styleUrl: './experience.component.scss'
+  styleUrls: ['./experience.component.scss', '../../../app.component.scss']
 })
 export class ExperienceComponent implements OnInit{
   experiences : GetExperiences = {experiences:[]} 

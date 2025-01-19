@@ -8,7 +8,7 @@ import { EnumService } from '../../../services/enum_service';
   selector: 'app-support-url',
   imports: [CommonModule],
   templateUrl: './support-url.component.html',
-  styleUrl: './support-url.component.scss'
+  styleUrls: ['./support-url.component.scss', '../../../app.component.scss']
 })
 export class SupportUrlComponent implements OnInit {
   supportUrls: GetSupportUrls={supportUrls:[]}

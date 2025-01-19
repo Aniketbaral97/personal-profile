@@ -281,22 +281,12 @@ Page Styles
     flex-direction: row;
 }
 
-.left-content {
-    width: 300px;
-    overflow-y: auto;
-    height: 100%;
-    background: #fff;
-    border-right: 1px solid rgba(221, 221, 221, 0.38);
-    display: flex;
-    flex-direction: column;
-}
 
 .main-content {
     flex: 1;
     overflow-y: auto;
     margin-left: 10px;
     background: #fff;
-    border-left: 1px solid rgba(221, 221, 221, 0.38);
 }
 .logo {
     display: flex;

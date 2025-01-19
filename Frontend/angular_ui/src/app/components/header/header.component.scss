@@ -282,6 +282,8 @@ Page Styles
 }
 
 .left-content {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
     width: 300px;
     overflow-y: auto;
     height: 100%;
@@ -289,6 +291,8 @@ Page Styles
     border-right: 1px solid rgba(221, 221, 221, 0.38);
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .main-content {
