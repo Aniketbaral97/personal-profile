@@ -1,0 +1,17 @@
+.user-initials {
+    width: 120px;
+    height: 120px;
+    background-color: #007bff;
+    color: white;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-family: 'Cursive', 'Arial', sans-serif; /* Apply a cursive font */
+    font-weight: bold;
+  }
+  .user-img{
+    display: flex;
+    justify-content: center;
+  }

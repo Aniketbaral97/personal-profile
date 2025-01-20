@@ -1,8 +1,10 @@
 export enum SkillLevel
 {
-    Begineer =1,
-    Intermediate =2,
-    Professional=3
+    Beginner = 1,
+    Intermediate = 2,
+    UpperIntermediate = 3,
+    Advanced = 4,
+    Expert = 5
 }
 
 export enum Gender

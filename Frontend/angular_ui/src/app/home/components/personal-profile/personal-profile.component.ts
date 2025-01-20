@@ -9,7 +9,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
   selector: 'app-personal-profile',
   imports: [CommonModule],
   templateUrl: './personal-profile.component.html',
-  styleUrls: ['../../../app.component.scss'],
+  styleUrls: ['../../../app.component.scss','./personal-profile.component.scss'],
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
