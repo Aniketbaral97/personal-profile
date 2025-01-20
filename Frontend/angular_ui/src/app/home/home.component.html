@@ -1,15 +1,27 @@
-<div id="about" #about [@zoomIn]="isVisible.about ? 'in' : 'void'"  [style.visibility]="isVisible ? 'visible' : 'hidden'">
-    <app-personal-profile></app-personal-profile>
-</div>
-<div id="education" #education [@zoomIn]="isVisible.education ? 'in' : 'void'" [style.visibility]="isVisible ? 'visible' : 'hidden'">
-    <app-education></app-education>
-</div>
-<div id="experience" #experience [@zoomIn]="isVisible.experience ? 'in' : 'void'" [style.visibility]="isVisible ? 'visible' : 'hidden'">
-    <app-experience></app-experience>
-</div>
-<div id="skill" #skill [@zoomIn]="isVisible.skill ? 'in' : 'void'" [style.visibility]="isVisible ? 'visible' : 'hidden'">
-    <app-skill></app-skill>
-</div>
-<div id="supportUrl" #supportUrl [@zoomIn]="isVisible.supportUrl ? 'in' : 'void'" [style.visibility]="isVisible ? 'visible' : 'hidden'">
-    <app-support-url></app-support-url>
+<div class="wrapper">
+    <div class="container">
+        <app-header></app-header>
+        <div>
+            <div id="about" #about [@zoomIn]="isVisible.about ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-personal-profile></app-personal-profile>
+            </div>
+            <div id="education" #education [@zoomIn]="isVisible.education ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-education></app-education>
+            </div>
+            <div id="experience" #experience [@zoomIn]="isVisible.experience ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-experience></app-experience>
+            </div>
+            <div id="skill" #skill [@zoomIn]="isVisible.skill ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-skill></app-skill>
+            </div>
+            <div id="supportUrl" #supportUrl [@zoomIn]="isVisible.supportUrl ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-support-url></app-support-url>
+            </div>
+        </div>
+    </div>
 </div>

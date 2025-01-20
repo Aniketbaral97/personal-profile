@@ -5,14 +5,14 @@ import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent, HeaderComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  currentSection: string = 'About'; // Default section is 'about'
+  currentSection: string = 'About';
 
   updateSection(section: string): void {
-    this.currentSection = section;  // Update the section to show in Personal Data component
+    this.currentSection = section;  
   }
 }

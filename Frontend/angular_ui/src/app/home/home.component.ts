@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, EducationComponent, ExperienceComponent, SkillComponent, SupportUrlComponent, PersonalProfileComponent],
+  imports: [CommonModule,HeaderComponent, EducationComponent, ExperienceComponent, SkillComponent, SupportUrlComponent, PersonalProfileComponent],
   templateUrl: './home.component.html',
   styleUrls: ['../app.component.scss'],
   animations: [
