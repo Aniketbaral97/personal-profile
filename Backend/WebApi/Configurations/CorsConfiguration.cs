@@ -6,7 +6,7 @@ public class CorsConfigModel
 }
 public static class CorsConfiguration
 {
-    public static readonly string CorsPolicyName = "kpoCors";
+    public static readonly string CorsPolicyName = "app-cors";
     public static IServiceCollection AddCorsService(this IServiceCollection services, IConfiguration config)
     {
         var corsModel = new CorsConfigModel();

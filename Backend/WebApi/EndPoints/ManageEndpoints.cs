@@ -11,6 +11,8 @@ public static class ManageEndpoints
         routes.MapPersonalInfoApi();
         routes.MapSkillApi();
         routes.MapSupportUrlApi();
+        routes.MapUserAuthApi();
+        routes.MapUserEndpoint();
         return routes;
     }
 }

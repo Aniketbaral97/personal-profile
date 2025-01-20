@@ -11,8 +11,7 @@ public static class EducationEndpoints
     public static RouteGroupBuilder MapEducationtApi(this IEndpointRouteBuilder routes)
     {
         RouteGroupBuilder group = routes.MapGroup("/api/education")
-        .WithTags("Education")
-         ;
+        .WithTags("Education");
 
         group.MapGet("/{id:guid}", async (Guid id,
         IEducationService repo) =>
@@ -41,7 +40,7 @@ public static class EducationEndpoints
                  response.Errors.Add(ex.Message);
              }
              return Results.Ok(response);
-         });
+         }).RequireAuthorization();
 
         group.MapPut("/{id:guid}", async (Guid id,
         [FromBody] UpdateEducationDto cmd, IEducationService service)
@@ -62,7 +61,7 @@ public static class EducationEndpoints
                 response.Errors.Add(ex.Message);
             }
             return Results.Ok(response);
-        });
+        }).RequireAuthorization();
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
@@ -85,7 +84,8 @@ public static class EducationEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         group.MapDelete("/info-id/{id:guid}", async (Guid id,
 
         IEducationService repo)
@@ -107,7 +107,8 @@ public static class EducationEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         return group;
 
     }

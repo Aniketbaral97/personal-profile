@@ -41,7 +41,8 @@ public static class SkillEndpoints
                  response.Errors.Add(ex.Message);
              }
              return Results.Ok(response);
-         });
+         }).RequireAuthorization();
+
 
         group.MapPut("/{id:guid}", async (Guid id,
         [FromBody] UpdateSkillDto cmd, ISkillService service)
@@ -62,7 +63,8 @@ public static class SkillEndpoints
                 response.Errors.Add(ex.Message);
             }
             return Results.Ok(response);
-        });
+        }).RequireAuthorization();
+
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
@@ -85,7 +87,8 @@ public static class SkillEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         group.MapDelete("/info-id/{id:guid}", async (Guid id,
 
         ISkillService repo)
@@ -107,7 +110,8 @@ public static class SkillEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         return group;
 
     }

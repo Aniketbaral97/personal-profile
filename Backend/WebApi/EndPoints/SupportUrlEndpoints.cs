@@ -4,6 +4,7 @@ using Application.DTOs.SupportUrls;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 
+
 namespace WebApi.EndPoints;
 
 public static class SupportUrlEndpoints
@@ -41,7 +42,8 @@ public static class SupportUrlEndpoints
                  response.Errors.Add(ex.Message);
              }
              return Results.Ok(response);
-         });
+         }).RequireAuthorization();
+
 
         group.MapPut("/{id:guid}", async (Guid id,
         [FromBody] UpdateSupportUrlDto cmd, ISupportUrlService service)
@@ -62,7 +64,8 @@ public static class SupportUrlEndpoints
                 response.Errors.Add(ex.Message);
             }
             return Results.Ok(response);
-        });
+        }).RequireAuthorization();
+
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
@@ -85,7 +88,8 @@ public static class SupportUrlEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         group.MapDelete("/info-id/{id:guid}", async (Guid id,
 
         ISupportUrlService repo)
@@ -107,7 +111,8 @@ public static class SupportUrlEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         return group;
 
     }

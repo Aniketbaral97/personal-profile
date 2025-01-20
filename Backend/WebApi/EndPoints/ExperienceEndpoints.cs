@@ -41,7 +41,7 @@ public static class ExperienceEndpoints
                  response.Errors.Add(ex.Message);
              }
              return Results.Ok(response);
-         });
+         }).RequireAuthorization();
 
         group.MapPut("/{id:guid}", async (Guid id,
         [FromBody] UpdateExperienceDto cmd, IExperienceService service)
@@ -62,7 +62,7 @@ public static class ExperienceEndpoints
                 response.Errors.Add(ex.Message);
             }
             return Results.Ok(response);
-        });
+        }).RequireAuthorization();
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
@@ -85,7 +85,7 @@ public static class ExperienceEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
         group.MapDelete("/info-id/{id:guid}", async (Guid id,
 
         IExperienceService repo)
@@ -107,7 +107,7 @@ public static class ExperienceEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
         return group;
 
     }

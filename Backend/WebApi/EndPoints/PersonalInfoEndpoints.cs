@@ -42,7 +42,7 @@ public static class PersonalInfoEndpoints
                  response.Errors.Add(ex.Message);
              }
              return Results.Ok(response);
-         });
+         }).RequireAuthorization();
 
         group.MapPut("/{id:guid}", async (Guid id,
         [FromBody] UpdatePersonalInfoDto cmd, IPersonalInfoService service)
@@ -63,7 +63,7 @@ public static class PersonalInfoEndpoints
                 response.Errors.Add(ex.Message);
             }
             return Results.Ok(response);
-        });
+        }).RequireAuthorization();
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
@@ -86,7 +86,8 @@ public static class PersonalInfoEndpoints
              }
              return Results.Ok(response);
 
-         });
+         }).RequireAuthorization();
+
         return group;
 
     }

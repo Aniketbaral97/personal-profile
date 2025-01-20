@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Services.Educations;
 using Application.Services.Experiences;
+using Application.Services.Identity;
 using Application.Services.PersonalInfo;
 using Application.Services.Skills.Validators;
 using Application.Services.SupportedUrls;
@@ -24,6 +25,7 @@ public static class ApplicationConfiguration
         services.AddScoped<IExperienceService, ExperienceService>();
         services.AddScoped<ISkillService, SkillService>();
         services.AddScoped<ISupportUrlService, SupportUrlService>();
+        services.AddScoped<IIdentityService, IdentityService>();
 
         return services;
     }

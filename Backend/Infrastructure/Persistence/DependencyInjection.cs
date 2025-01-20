@@ -1,11 +1,15 @@
+using Application.DTOs.Identity;
 using Application.Interfaces;
+using Application.Services.Identity;
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Persistence;
 
@@ -13,9 +17,9 @@ public static class DependencyInjection
 {
 
     public static IServiceCollection ConfigureAppInfrastructure(
-        this IServiceCollection services,
-        IConfiguration configuration
-    ){
+        this IServiceCollection services
+    )
+    {
         services.AddScoped<IPersonalInfoRepository, PersonalInfoRepository>();
         services.AddScoped<IEducationRepository, EducationRepository>();
         services.AddScoped<IExperienceRepository, ExperienceRepository>();
@@ -33,7 +37,6 @@ public static class DependencyInjection
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             option.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
-            //AppDbContextHelper.AddDbContextSettings(configuration.GetConnectionString("DefaultConnection"), option);
         });
         services
             .AddDbContext<AppIdentityDbContext>(option =>
@@ -41,9 +44,6 @@ public static class DependencyInjection
                 option
                     .UseNpgsql(configuration.GetConnectionString("IdentityConnection"))
                     .UseSnakeCaseNamingConvention();
-#if DEBUG
-                Console.WriteLine("Mode=Debug");
-#endif
             })
             .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
             {
@@ -73,9 +73,57 @@ public static class DependencyInjection
         services.AddSingleton(settings);
         return services;
     }
+
+
+    public static IServiceCollection AddAppJwtConfiguration(this IServiceCollection service, IConfiguration configuration)
+    {
+        var jwtConfig = new JwtConfig(configuration["Jwt:Key"] ?? string.Empty,
+        configuration["Jwt:Issuer"] ?? string.Empty,
+        Convert.ToInt32(configuration["Jwt:ExpiresInHour"] ?? string.Empty));
+        JwtTokenService tokenService = new(jwtConfig);
+        service.AddSingleton(tokenService);
+        service.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(x =>
+        {
+            x.SaveToken = true;
+            x.RequireHttpsMetadata = false;
+            x.TokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidateIssuer = true,
+                ValidateAudience = false,
+                ValidIssuer = configuration["jwt:Issuer"],
+                IssuerSigningKey = tokenService.GetSymmetricSecurityKey()
+            };
+            x.Events = new JwtBearerEvents()
+            {
+                OnAuthenticationFailed = context =>
+                {
+                    if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                    {
+                        context.Response.Headers["Token-Expired"] = "true";
+                    }
+                    System.Console.WriteLine("Token failed ");
+                    return Task.CompletedTask;
+                }
+            };
+        });
+        return service;
+
+    }
+    public static IServiceCollection AddAppAuthorization(this IServiceCollection services)
+    {
+        return Policies.AppAuthorization(services);
+    }
     public class ConnectionSettings
     {
-        public string IdentityConnection {get; set;}="";
-        public string DefaultConnection {get; set;}="";
+        public string IdentityConnection { get; set; } = "";
+        public string DefaultConnection { get; set; } = "";
     }
+
 }
