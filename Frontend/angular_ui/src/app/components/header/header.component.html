@@ -19,10 +19,18 @@
         <div class="social-icons">
             <ul>
                 <li>
-                    <a routerLink="login" title="Login">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        <span>Login</span>
-                    </a>
+                    <ng-container **ngIf="!isAuthenticate">
+                        <a routerLink="login" title="Login">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <span>Login</span>
+                        </a>
+                    </ng-container>
+                    <ng-container>
+                        <a (click)="signOut()" title="Login">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <span>Logout</span>
+                        </a>
+                    </ng-container>
                 </li>
             </ul>
         </div>
