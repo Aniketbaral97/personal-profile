@@ -4,3 +4,41 @@
 {
     width: 80%;
 }
+.input-form-button{
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.input-form{
+    width: 85%;
+    padding-right: 20px;
+    border-right: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+}
+.input-button{
+    align-self: center;
+    display: flex;
+    gap: 10px;
+}
+.align-center{
+    align-self: center;
+}
+
+.width-inherit{
+    width: inherit;
+}
+.flex-1
+{
+    flex: 1;
+}
+.flex-2{
+    flex: 2;
+}
+.flex{
+    display: flex;
+    gap: 10px;
+}
+.pl-50-px{
+    padding-left: 50px;
+}

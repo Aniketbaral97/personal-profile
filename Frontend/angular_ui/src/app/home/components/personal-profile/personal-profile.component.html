@@ -5,18 +5,19 @@
         <div class="pg-title">My Profile</div>
       </div>
       <div class="d-flex-align-center">
-        <div class="user-img flex-1">
-            <div class="user-initials">
-              {{ personalInfo.firstname[0] }}{{ personalInfo.lastname[0] }}
-            </div>
-          </div>
         <div class="user-profile flex-1">
-          <div class="pro-details">
-            <div *ngIf="personalInfo.shortText" class="sm-text">{{ personalInfo.shortText }}</div>
+          <div class="pro-details">    
             <div class="name">
-              {{ personalInfo.firstname }} {{ personalInfo.middlename }} {{ personalInfo.lastname }}
+              <div class="user-initials">
+                {{ personalInfo.firstname[0] }}{{ personalInfo.lastname[0] }}
+              </div>
+              <div class="align-center">
+                <div *ngIf="personalInfo.shortText" class="sm-text">{{ personalInfo.shortText }}</div>
+                {{ personalInfo.firstname }} {{ personalInfo.middlename }} {{ personalInfo.lastname }}
+                <div *ngIf="personalInfo.designations" class="role">{{ personalInfo.designations }}</div>
+              </div>
             </div>
-            <div *ngIf="personalInfo.designations" class="role">{{ personalInfo.designations }}</div>
+            
           </div>
           <div *ngIf="personalInfo.details" class="text">{{ personalInfo.details }}</div>
           <div class="pr-list">
@@ -35,14 +36,6 @@
               </li>
             </ul>
           </div>
-          <!-- <div class="social-icons-head">
-            <ul>
-              <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-              <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-              <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </div>

@@ -2,72 +2,63 @@
     <app-sidebar></app-sidebar>
     <form class="p-4 border rounded shadow-sm cus-form">
         <h3 class="mb-4">Create Personal Info</h3>
-      
-        <!-- First Name -->
-        <div class="mb-3">
+        <div class="mb-3 flex">
+        <div class="flex-1">
           <label for="firstname" class="form-label">First Name <span class="text-danger">*</span></label>
           <input name="firstname" type="text" class="form-control" id="firstname" [(ngModel)]="request.firstname" placeholder="Enter first name" required />
         </div>
       
-        <!-- Middle Name -->
-        <div class="mb-3">
+        <div class="flex-1">
           <label for="middlename" class="form-label">Middle Name</label>
           <input name="middlename" type="text" class="form-control" id="middlename" [(ngModel)]="request.middlename" placeholder="Enter middle name (optional)" />
         </div>
       
-        <!-- Last Name -->
-        <div class="mb-3">
+        <div class="flex-1">
           <label for="lastname" class="form-label">Last Name <span class="text-danger">*</span></label>
           <input name="lastname" type="text" class="form-control" id="lastname" [(ngModel)]="request.lastname" placeholder="Enter last name" required />
         </div>
-      
-        <!-- Designations -->
-        <div class="mb-3">
+        </div>
+        <div class="mb-3 flex">
+        <div class="flex-1">
           <label for="designations" class="form-label">Designations <span class="text-danger">*</span></label>
           <input name="designations" type="text" class="form-control" id="designations" [(ngModel)]="request.designations" placeholder="Enter designations" required />
         </div>
-      
-        <!-- Address -->
-        <div class="mb-3">
-          <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
-          <textarea name="address" [(ngModel)]="request.address" class="form-control" id="address" rows="3" placeholder="Enter address" required></textarea>
-        </div>
-      
-        <!-- Phone Number -->
-        <div class="mb-3">
+        <div class="flex-1">
           <label for="phonenumber" class="form-label">Phone Number</label>
           <input name="phonenumber" [(ngModel)]="request.phoneNumber" type="tel" class="form-control" id="phonenumber" placeholder="Enter phone number (optional)" />
-          {{request.phoneNumber}}
         </div>
-      
-        <!-- Details -->
-        <div class="mb-3">
-          <label for="details" class="form-label">Details</label>
-          <textarea name="details" [(ngModel)]="request.details" class="form-control" id="details" rows="3" placeholder="Enter additional details (optional)"></textarea>
-        </div>
-      
-        <!-- Date of Birth -->
-        <div class="mb-3">
+        <div class="flex-1">
           <label for="dob" class="form-label">Date of Birth <span class="text-danger">*</span></label>
           <input name="dateOfBirth" [(ngModel)]="request.dateOfBirth" type="date" class="form-control" id="dob" required />
         </div>
       
-        <!-- Gender -->
-        <div class="mb-3">
+        <div class="flex-1">
           <label class="form-label">Gender <span class="text-danger">*</span></label>
           <select name="gender" class="form-select" [(ngModel)]="request.gender" (ngModelChange)="onGenderChange($event)" id="gender" required>
             <option>--select--</option>
             <option *ngFor="let option of genderOptions" [value]="option.value">{{ option.key }}</option>
           </select>
         </div>
+      </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+          <textarea name="address" [(ngModel)]="request.address" class="form-control" id="address" rows="3" placeholder="Enter address" required></textarea>
+        </div>
+        
+        
       
-        <!-- Short Text -->
+        <div class="mb-3">
+          <label for="details" class="form-label">Details</label>
+          <textarea name="details" [(ngModel)]="request.details" class="form-control" id="details" rows="3" placeholder="Enter additional details (optional)"></textarea>
+        </div>
+      
+        
+      
         <div class="mb-3">
           <label for="shortText" class="form-label">Short Text</label>
           <input [maxLength]="25" name="shortText" [(ngModel)]="request.shortText" type="text" class="form-control" id="shortText" placeholder="Enter short text (optional)" />
         </div>
       
-        <!-- Submit Button -->
 
         <button *ngIf="request.id =='00000000-0000-0000-0000-000000000000'" (click)="savePersonalInfo()" type="submit" class="btn btn-primary">Submit</button>
         <button *ngIf="request.id !='00000000-0000-0000-0000-000000000000'" (click)="updatePersanalInfo()" type="submit" class="btn btn-primary">Submit</button>

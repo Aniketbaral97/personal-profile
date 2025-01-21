@@ -1,38 +1,45 @@
 <div style="display: flex;">
     <app-sidebar></app-sidebar>
-    <form class="p-4 border rounded shadow-sm cus-form">
+    <form class="p-4 border rounded shadow-sm cus-form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && saveSkill()">
         <h3 class="mb-4">Add Skill</h3>
-      
+        <div *ngFor="let item of getSkillsModel.skills; let i=index" class="input-form-button card p-3">
+          <div class="input-form">
+            <div class="mb-3 flex">
+              <div class="mb-3">
+                <label for="skillType" class="form-label">Skill Type</label>
+                <select class="form-select" name="type-{{i}}" [(ngModel)]="item.type" (ngModelChange)="onTypeChange($event,getSkillsModel.skills.indexOf(item))" id="skillType">
+                  <option value="0" selected disabled>-- Select Skill type --</option>
+                  <option value="Technical" *ngFor="let levelItem of skillTypeOptions" [value]="levelItem.value">{{levelItem.key}}</option>
+                </select>
+              </div>
+            
+              <!-- Skill Name -->
+              <div class="mb-3">
+                <label for="skill" class="form-label">Skill <span class="text-danger">*</span></label>
+                <input type="text" name="skill-{{i}}" [(ngModel)]="item.skill" class="form-control" id="skill" placeholder="Enter skill name (e.g., Java, Leadership)" required />
+              </div>
+            
+              <!-- Skill Level -->
+              <div class="mb-3">
+                <label for="skillLevel" class="form-label">Skill Level</label>
+                <select name="level-{{i}}" [(ngModel)]="item.level" class="form-select" (ngModelChange)="onLevelChange($event,getSkillsModel.skills.indexOf(item))" id="skillLevel">
+                  <option value="0" selected disabled>-- Select Skill Level --</option>
+                  <option value="Technical" *ngFor="let level of skillLevelOptions" [value]="level.value">{{level.key}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="input-button">
+            <button type="button" *ngIf="item.id !='00000000-0000-0000-0000-000000000000'" (click)="updatePersanalInfo(item)"
+          class="btn btn-info">Update</button>
+        <button type="button" (click)="deletePersanalInfo(item.id, getSkillsModel.skills.indexOf(item))"
+          class="btn btn-danger">Delete</button>
+          </div>
+        </div>
         <!-- Skill Type -->
-        <div class="mb-3">
-          <label for="skillType" class="form-label">Skill Type</label>
-          <select class="form-select" id="skillType">
-            <option value="Technical">Technical</option>
-            <option value="Soft">Soft</option>
-            <option value="Management">Management</option>
-            <option value="Creative">Creative</option>
-            <option value="Other" selected>Other</option>
-          </select>
-        </div>
-      
-        <!-- Skill Name -->
-        <div class="mb-3">
-          <label for="skill" class="form-label">Skill <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="skill" placeholder="Enter skill name (e.g., Java, Leadership)" required />
-        </div>
-      
-        <!-- Skill Level -->
-        <div class="mb-3">
-          <label for="skillLevel" class="form-label">Skill Level</label>
-          <select class="form-select" id="skillLevel">
-            <option value="Beginner" selected>Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Expert">Expert</option>
-          </select>
-        </div>
-      
+        
         <!-- Submit Button -->
+        <button (click)="addSkill()" type="button" class="btn btn-success">Add</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       
