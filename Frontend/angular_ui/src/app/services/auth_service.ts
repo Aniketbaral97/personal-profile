@@ -19,8 +19,11 @@ export class AuthService {
               password: password
           }).pipe(
               tap((data) => {
-                localStorage.setItem("jwt_token", data.response!);
-                this.route.navigateByUrl('dashboard');
+                if(data.errors.length == 0)
+                {
+                  localStorage.setItem("jwt_token", data.response!);
+                  this.route.navigateByUrl('dashboard');
+                }
               }),
               catchError((error) => {
                 var errorMessage =this.extractErrorMessage(error);
@@ -40,7 +43,7 @@ export class AuthService {
   private getError(error: any, statusCode:number): ApiResultModel<string> {
     return {
       success: false,
-      httpStatusCode: 501,
+      httpStatusCode: statusCode,
       response: null,
       errors: error.error || ["An unexpected error occurred."]
     };

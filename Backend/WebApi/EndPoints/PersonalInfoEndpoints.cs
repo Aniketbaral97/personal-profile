@@ -12,8 +12,7 @@ public static class PersonalInfoEndpoints
     public static RouteGroupBuilder MapPersonalInfoApi(this IEndpointRouteBuilder routes)
     {
         RouteGroupBuilder group = routes.MapGroup("/api/personal-info")
-        .WithTags("PersonalInfo")
-         ;
+        .WithTags("PersonalInfo");
 
         group.MapGet("/{id:guid}", async (Guid id,
         IPersonalInfoService repo) =>

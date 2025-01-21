@@ -3,12 +3,15 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideToastr } from 'ngx-toastr';
-import { CustomeInterceptor } from './services/CustomeInterceptor';
+import { customInterceptor } from './services/CustomeInterceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideHttpClient(withFetch()),{ provide: HTTP_INTERCEPTORS, useClass: CustomeInterceptor, multi: true }, provideToastr(), provideAnimations(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideAnimationsAsync()]
+  providers: [provideHttpClient(
+    withFetch(),
+    withInterceptors([customInterceptor])
+  ), provideToastr(), provideAnimations(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), provideAnimationsAsync()]
 };
