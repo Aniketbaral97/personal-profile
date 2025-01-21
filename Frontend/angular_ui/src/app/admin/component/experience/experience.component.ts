@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-experience',
-  imports: [],
+  imports: [SidebarComponent],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.scss'
 })

@@ -1,1 +1,49 @@
-<p>sidebar works!</p>
+<div class="d-flex sticky">
+    <nav class="sidebar bg-dark text-light vh-100">
+      <div class="sidebar-header py-3 text-center bg-primary">
+        <h4>Admin Panel</h4>
+      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-house-door me-2"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/personal-info" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-person me-2"></i> Personal Info
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/education" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-gear me-2"></i> Education
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/experience" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-question-circle me-2"></i> Experience
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/skill" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-question-circle me-2"></i> Skill
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/support-url" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-question-circle me-2"></i> Support Url
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <a (click)="signOut()" class="nav-link text-light py-2 px-3" >
+            <i class="bi bi-box-arrow-right me-2"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </nav>
+  
+    <div class="content flex-grow-1 p-3">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  

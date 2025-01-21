@@ -1,1 +1,39 @@
-<p>skill works!</p>
+<div style="display: flex;">
+    <app-sidebar></app-sidebar>
+    <form class="p-4 border rounded shadow-sm cus-form">
+        <h3 class="mb-4">Add Skill</h3>
+      
+        <!-- Skill Type -->
+        <div class="mb-3">
+          <label for="skillType" class="form-label">Skill Type</label>
+          <select class="form-select" id="skillType">
+            <option value="Technical">Technical</option>
+            <option value="Soft">Soft</option>
+            <option value="Management">Management</option>
+            <option value="Creative">Creative</option>
+            <option value="Other" selected>Other</option>
+          </select>
+        </div>
+      
+        <!-- Skill Name -->
+        <div class="mb-3">
+          <label for="skill" class="form-label">Skill <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="skill" placeholder="Enter skill name (e.g., Java, Leadership)" required />
+        </div>
+      
+        <!-- Skill Level -->
+        <div class="mb-3">
+          <label for="skillLevel" class="form-label">Skill Level</label>
+          <select class="form-select" id="skillLevel">
+            <option value="Beginner" selected>Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+</div>

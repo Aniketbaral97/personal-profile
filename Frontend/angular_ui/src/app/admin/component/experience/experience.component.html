@@ -1,1 +1,58 @@
-<p>experience works!</p>
+<div style="display: flex;">
+    <app-sidebar></app-sidebar>
+    <form class="p-4 border rounded shadow-sm cus-form">
+        <h3 class="mb-4">Add Experience</h3>
+      
+        <!-- Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="title" placeholder="Enter job title" required />
+        </div>
+      
+        <!-- Company -->
+        <div class="mb-3">
+          <label for="company" class="form-label">Company <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="company" placeholder="Enter company name" required />
+        </div>
+      
+        <!-- Position -->
+        <div class="mb-3">
+          <label for="position" class="form-label">Position <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="position" placeholder="Enter position" required />
+        </div>
+      
+        <!-- Duration -->
+        <div class="mb-3">
+          <label for="duration" class="form-label">Duration <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="duration" placeholder="e.g., 2 years" required />
+        </div>
+      
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+          <textarea class="form-control" id="description" rows="4" placeholder="Provide a brief description" required></textarea>
+        </div>
+      
+        <!-- Is Current -->
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="isCurrent" />
+          <label class="form-check-label" for="isCurrent">Currently Working Here</label>
+        </div>
+      
+        <!-- Start Date -->
+        <div class="mb-3">
+          <label for="startDate" class="form-label">Start Date <span class="text-danger">*</span></label>
+          <input type="date" class="form-control" id="startDate" required />
+        </div>
+      
+        <!-- End Date -->
+        <div class="mb-3">
+          <label for="endDate" class="form-label">End Date</label>
+          <input type="date" class="form-control" id="endDate" />
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+</div>

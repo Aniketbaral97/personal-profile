@@ -19,15 +19,15 @@
         <div class="social-icons">
             <ul>
                 <li>
-                    <ng-container **ngIf="!isAuthenticate">
+                    <ng-container *ngIf="!isAuthenticate">
                         <a routerLink="login" title="Login">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <i class="bi bi-person me-2"></i>
                             <span>Login</span>
                         </a>
                     </ng-container>
-                    <ng-container>
+                    <ng-container *ngIf="isAuthenticate">
                         <a (click)="signOut()" title="Login">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <i class="bi bi-logout me-2"></i>
                             <span>Logout</span>
                         </a>
                     </ng-container>

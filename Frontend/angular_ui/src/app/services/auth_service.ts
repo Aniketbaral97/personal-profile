@@ -20,7 +20,7 @@ export class AuthService {
           }).pipe(
               tap((data) => {
                 localStorage.setItem("jwt_token", data.response!);
-                this.route.navigateByUrl('');
+                this.route.navigateByUrl('dashboard');
               }),
               catchError((error) => {
                 var errorMessage =this.extractErrorMessage(error);

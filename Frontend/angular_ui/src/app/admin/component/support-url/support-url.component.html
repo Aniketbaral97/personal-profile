@@ -1,1 +1,29 @@
-<p>support-url works!</p>
+<div style="display: flex;">
+    <app-sidebar></app-sidebar>
+    <form class="p-4 border rounded shadow-sm cus-form">
+        <h3 class="mb-4">Add URL</h3>
+      
+        <!-- URL Type -->
+        <div class="mb-3">
+          <label for="urlType" class="form-label">URL Type <span class="text-danger">*</span></label>
+          <select class="form-select" id="urlType" required>
+            <option value="Personal">Personal</option>
+            <option value="Professional">Professional</option>
+            <option value="Social">Social</option>
+            <option value="Portfolio">Portfolio</option>
+            <option value="Other" selected>Other</option>
+          </select>
+        </div>
+      
+        <!-- URL -->
+        <div class="mb-3">
+          <label for="url" class="form-label">URL <span class="text-danger">*</span></label>
+          <input type="url" class="form-control" id="url" placeholder="Enter URL (e.g., https://example.com)" required />
+          <div class="form-text">Please provide a valid URL (e.g., https://).</div>
+        </div>
+      
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+</div>
