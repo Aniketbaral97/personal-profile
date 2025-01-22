@@ -4,30 +4,50 @@
             <div class="pg-sub-title">Experience</div>
             <div class="pg-title">My Professional Experience</div>
         </div>
-        <div *ngFor="let experience of experiences.experiences" class="border rounded shadow-sm p-4 mb-4">
-            <div *ngIf="experience.company" class="exp-value">
-              <strong>Company:</strong> {{ experience.company }}
+        <div *ngFor="let experience of experiences.experiences" class="experience-item mb-4 p-4 card border-0 rounded-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div class="exp-header">
+                <h5 class="mb-0 text-primary">{{ experience.company || 'Company Name' }}</h5>
+                <p class="text-muted">{{ experience.position || 'Position Title' }}</p>
+              </div>
+              <div class="exp-duration">
+                <span class="badge p-1 bg-info">{{ experience.duration || 'N/A' }}</span>
+                <span *ngIf="experience.isCurrent" class="badge p-1 bg-success ms-2">Current</span>
+              </div>
             </div>
           
-            <div *ngIf="experience.position" class="exp-value">
-              <strong>Position:</strong> {{ experience.position }}
-            </div>
+            <div class="card-body">
+              <div *ngIf="experience.startDate" class="exp-dates mb-3">
+                <strong>Start Date:</strong> {{ experience.startDate | date: 'MMM yyyy' }}
+                <span *ngIf="experience.endDate">
+                  <strong>End Date:</strong> {{ experience.endDate | date: 'MMM yyyy' }}
+                </span>
+              </div>
           
-            <div *ngIf="experience.startDate || experience.endDate || experience.isCurrent" class="exp-value">
-              <strong>Duration:</strong>
-              <span *ngIf="experience.startDate">{{ experience.startDate | date: 'MMM yyyy' }}</span>
-              <span *ngIf="experience.endDate"> - {{ experience.endDate | date: 'MMM yyyy' }}</span>
-              <span *ngIf="experience.isCurrent"> (Present)</span>
-            </div>
+              <div *ngIf="experience.duration" class="exp-duration-text mb-3">
+                <strong>Duration (Text):</strong> {{ experience.duration || 'No duration available.' }}
+              </div>
           
-            <div *ngIf="experience.duration" class="exp-value">
-              <strong>Duration (Text):</strong> {{ experience.duration }}
-            </div>
+              <div *ngIf="experience.description" class="exp-description mb-3">
+                <strong>Description:</strong>
+                <p>{{ experience.description || 'No description available.' }}</p>
+              </div>
           
-            <div *ngIf="experience.description" class="exp-value">
-              <strong>Description:</strong> {{ experience.description }}
+              <div *ngIf="experience.isCurrent && !experience.endDate" class="exp-status mb-3">
+                <span class="badge p-1 bg-warning">Ongoing</span>
+              </div>
+          
+              <div class="exp-footer d-flex justify-content-between align-items-center mt-3">
+                <div>
+                  <i class="fa fa-building text-primary"></i> <strong>Company:</strong> {{ experience.company }}
+                </div>
+                <div>
+                  <i class="fa fa-calendar-check text-success"></i> <strong>Start Date:</strong> {{ experience.startDate | date: 'MMM yyyy' }}
+                </div>
+              </div>
             </div>
           </div>
+          
           
     </div>
 </div>

@@ -4,30 +4,50 @@
             <div class="pg-sub-title">Education</div>
             <div class="pg-title">My Educational Background</div>
         </div>
-        <div *ngFor="let education of educations.educations" class="border rounded shadow-sm p-4 mb-4">
-            <div *ngIf="education.institution" class="edu-value">
-              <strong>Institution:</strong> {{ education.institution }}
+        <div *ngFor="let education of educations.educations" class="education-item mb-4 p-3 card border-0 rounded-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div class="edu-header">
+                <h5 class="mb-0 text-primary">{{ education.institution || 'Institution Name' }}</h5>
+                <p class="text-muted">{{ education.degree || 'Degree Name' }}</p>
+              </div>
+              <div class="edu-duration">
+                <span class="badge bg-info p-1">{{ education.duration || 'N/A' }}</span>
+                <span *ngIf="education.isCurrent" class="badge bg-success ms-2 p-1">Current</span>
+              </div>
             </div>
-            
-            <div *ngIf="education.degree" class="edu-value">
-              <strong>Degree:</strong> {{ education.degree }}
+          
+            <div class="card-body">
+              <div *ngIf="education.startDate" class="edu-dates mb-3">
+                <strong>Start Date:</strong> {{ education.startDate | date: 'MMM yyyy' }}
+                <span *ngIf="education.endDate">
+                  <strong>End Date:</strong> {{ education.endDate | date: 'MMM yyyy' }}
+                </span>
+              </div>
+          
+              <div *ngIf="education.description" class="edu-description mb-3">
+                <strong>Description:</strong>
+                <p>{{ education.description || 'No description available.' }}</p>
+              </div>
+          
+              <div *ngIf="education.grading" class="edu-grading mb-3">
+                <strong>Grading:</strong> {{ education.grading }} 
+                <span *ngIf="education.gradingType">{{ getGradingTypesEnumKey(education.gradingType) }}</span>
+              </div>
+          
+              <div *ngIf="education.isCurrent && !education.endDate" class="edu-status mb-3">
+                <span class="badge bg-warning p-1">Ongoing</span>
+              </div>
+          
+              <div class="edu-footer d-flex justify-content-between align-items-center mt-3">
+                <div>
+                  <i class="fa fa-university text-primary"></i> <strong>Institution:</strong> {{ education.institution }}
+                </div>
+                <div>
+                  <i class="fa fa-calendar-check text-success"></i> <strong>Start Date:</strong> {{ education.startDate | date: 'MMM yyyy' }}
+                </div>
+              </div>
             </div>
-            
-            <div *ngIf="education.duration || education.isCurrent" class="edu-value">
-              <strong>Duration:</strong> 
-              <span *ngIf="education.startDate">{{ education.startDate | date: 'MMM yyyy' }}</span>
-              <span *ngIf="education.endDate"> - {{ education.endDate | date: 'MMM yyyy' }}</span>
-              <span *ngIf="education.isCurrent"> (Present)</span>
-            </div>
-            
-            <div *ngIf="education.description" class="edu-value">
-              <strong>Description:</strong> {{ education.description }}
-            </div>
-            
-            <div *ngIf="education.gradingType || education.grading" class="edu-value">
-              <strong>Grading:</strong> 
-              {{ education.grading }} {{ getGradingTypesEnumKey(education.gradingType) }}
-            </div>
-          </div>          
+          </div>
+                    
     </div>
 </div>
