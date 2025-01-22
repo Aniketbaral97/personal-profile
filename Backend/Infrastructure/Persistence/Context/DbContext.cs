@@ -17,6 +17,7 @@ public partial class AppDbContext : DbContext
     public DbSet<SupportUrls> SupportUrls { get; set; }
     public DbSet<Experience> Experiences { get; set; }
     public DbSet<PersonalInfo> PersonalInfos { get; set; }
+    public DbSet<Reference> References { get; set; }
 
     public Task<int> SaveChangesAsync()
     {

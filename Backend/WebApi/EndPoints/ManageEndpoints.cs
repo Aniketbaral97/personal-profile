@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
 namespace WebApi.EndPoints;
 
 public static class ManageEndpoints
@@ -13,6 +11,7 @@ public static class ManageEndpoints
         routes.MapSupportUrlApi();
         routes.MapUserAuthApi();
         routes.MapUserEndpoint();
+        routes.MapReferenceApi();
         return routes;
     }
 }

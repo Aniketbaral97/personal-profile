@@ -42,7 +42,7 @@ builder.Services.AddAppDbContextAndIdentity(builder.Configuration);
 builder.Services.AddAppJwtConfiguration(builder.Configuration);
 builder.Services.AddAppAuthorization();
 
-builder.Services.ConfigureAppAplication(builder.Configuration);
+builder.Services.ConfigureAppAplication();
 builder.Services.ConfigureAppInfrastructure();
 builder.Services.AddKpoDataServicesAndRepositories(builder.Configuration);
 

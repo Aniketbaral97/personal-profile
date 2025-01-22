@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../sidebar/sidebar.component";
-import { Gender } from '../../../models/enums/enums';
+import { Gender, WorkAvailabilityStatus } from '../../../models/enums/enums';
 import { CommonModule } from '@angular/common';
 import { AdminPersonalInfo } from '../../../models/admin/personal_profile_request';
 import { PersonalInfoService } from '../../../services/personalInfo_service';
@@ -15,11 +15,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class PersonalInfoComponent implements OnInit {
   genderOptions: { key: string; value: number }[] = [];
+  availabiltyOptions: { key: string; value: number }[] = [];
   genderStatus: typeof Gender = Gender;
+  workAvailabilty: typeof WorkAvailabilityStatus = WorkAvailabilityStatus;
   id:string='6f9619ff-8b86-d011-b42d-00cf4fc964ff';
   request: AdminPersonalInfo={
     id:'00000000-0000-0000-0000-000000000000',  
-    gender:0  
+    gender:0 ,
+    workAvailabilityStatus:0,
+    languages:[],
+    hobbies:[]
   }
   constructor(private service: PersonalInfoService, private toast: ToastrService){}
   ngOnInit(): void {
@@ -29,9 +34,23 @@ export class PersonalInfoComponent implements OnInit {
         key,
         value: this.genderStatus[key as keyof typeof Gender],
       }));
-      console.log(this.genderOptions);
+    this.availabiltyOptions = Object.keys(this.workAvailabilty)
+      .filter((key) => isNaN(Number(key))) // Filter out numeric keys
+      .map((key) => ({
+        key,
+        value: this.workAvailabilty[key as keyof typeof WorkAvailabilityStatus],
+      }));
+      
     this.request.id=this.id;
     this.fetchPersonalInfo();
+    if(this.request.languages.length==0 || this.request.languages ==null)
+    {
+      this.addLanguage();
+    }
+    if(this.request.hobbies.length==0 || this.request.languages ==null)
+    {
+      this.addHobby();
+    }
   }
 
   fetchPersonalInfo(){
@@ -85,5 +104,16 @@ export class PersonalInfoComponent implements OnInit {
   }
   onGenderChange(value: string): void {
     this.request.gender = value ? Number(value) : 0;
+  }
+  onWorkChange(value: string): void {
+    this.request.gender = value ? Number(value) : 0;
+  }
+  addLanguage(){
+    let newItem:string="";
+    this.request.languages.push(newItem)
+  }
+  addHobby(){
+    let newItem:string="";
+    this.request.hobbies.push(newItem)
   }
 }

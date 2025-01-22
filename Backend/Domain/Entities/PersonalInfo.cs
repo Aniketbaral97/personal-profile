@@ -13,4 +13,9 @@ public class PersonalInfo : BaseEntity
     public DateOnly DateOfBirth { get; set; }
     public required Gender Gender { get; set; }
     public string? ShortText {get;set;}
+    public string? Email {get;set;}
+    public string? Nationality { get; set; }
+    public string[] Hobbies { get; set; }=[];
+    public string[] Languages { get; set; }=[];
+    public WorkAvailabilityStatus WorkAvailabilityStatus {get;set;}
 }

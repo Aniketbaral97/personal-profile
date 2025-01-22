@@ -28,6 +28,10 @@
           <input name="phonenumber" [(ngModel)]="request.phoneNumber" type="tel" class="form-control" id="phonenumber" placeholder="Enter phone number (optional)" />
         </div>
         <div class="flex-1">
+          <label for="phonenumber" class="form-label">Email</label>
+          <input name="email" [(ngModel)]="request.email" type="tel" class="form-control" id="email" placeholder="Enter email (optional)" />
+        </div>
+        <div class="flex-1">
           <label for="dob" class="form-label">Date of Birth <span class="text-danger">*</span></label>
           <input name="dateOfBirth" [(ngModel)]="request.dateOfBirth" type="date" class="form-control" id="dob" required />
         </div>
@@ -40,26 +44,49 @@
           </select>
         </div>
       </div>
-        <div class="mb-3">
+      <div class="mb-3 flex">
+        <div class="flex-1">
+          <label class="form-label">Work Availabilty <span class="text-danger">*</span></label>
+          <select name="workAvailability" class="form-select" [(ngModel)]="request.workAvailabilityStatus" (ngModelChange)="onWorkChange($event)" id="workAvailability" required>
+            <option>--select--</option>
+            <option *ngFor="let option of availabiltyOptions" [value]="option.value">{{ option.key }}</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label for="nationality" class="form-label">Nationality</label>
+          <input [maxLength]="50" name="nationality" [(ngModel)]="request.nationality" type="text" class="form-control" id="nationality" placeholder="Enter short text (optional)" />
+        </div>
+        <div class="flex-1">
           <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
-          <textarea name="address" [(ngModel)]="request.address" class="form-control" id="address" rows="3" placeholder="Enter address" required></textarea>
+          <input name="address" [(ngModel)]="request.address" class="form-control" id="address" placeholder="Enter address" required />
+        </div>
+      </div>
+      <div class="mb-3 flex" >
+        <div class="flex-1 ">
+          <label for="address" class="form-label">Languages <span class="text-danger">*</span></label>
+          <div *ngFor="let item of request.languages; let i=index" class="mb-1">
+            <input name="language-{{i}}" [(ngModel)]="request.languages[i]" class="form-control" id="address" placeholder="Enter Language" required />
+          </div>
+          <button (click)="addLanguage()" type="button" class="btn btn-success">Add</button>
+        </div>
+        <div class="flex-1 ">
+          <label for="address" class="form-label">Hobbies <span class="text-danger">*</span></label>
+          <div *ngFor="let item of request.hobbies; let i=index" class="mb-1">
+            <input name="hobbies-{{i}}" [(ngModel)]="request.hobbies[i]" class="form-control" id="address" placeholder="Enter Language" required />
+          </div>
+          <button (click)="addHobby()" type="button" class="btn btn-success">Add</button>
         </div>
         
-        
-      
+      </div>
+       
         <div class="mb-3">
           <label for="details" class="form-label">Details</label>
           <textarea name="details" [(ngModel)]="request.details" class="form-control" id="details" rows="3" placeholder="Enter additional details (optional)"></textarea>
         </div>
-      
-        
-      
         <div class="mb-3">
           <label for="shortText" class="form-label">Short Text</label>
-          <input [maxLength]="25" name="shortText" [(ngModel)]="request.shortText" type="text" class="form-control" id="shortText" placeholder="Enter short text (optional)" />
+          <input [maxLength]="50" name="shortText" [(ngModel)]="request.shortText" type="text" class="form-control" id="shortText" placeholder="Enter short text (optional)" />
         </div>
-      
-
         <button *ngIf="request.id =='00000000-0000-0000-0000-000000000000'" (click)="savePersonalInfo()" type="submit" class="btn btn-primary">Submit</button>
         <button *ngIf="request.id !='00000000-0000-0000-0000-000000000000'" (click)="updatePersanalInfo()" type="submit" class="btn btn-primary">Submit</button>
       </form>

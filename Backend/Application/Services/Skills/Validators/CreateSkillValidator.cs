@@ -1,4 +1,5 @@
 using Application.DTOs.PersonalInfos;
+using Application.DTOs.References;
 using Application.DTOs.Skills;
 using FluentValidation;
 

@@ -1,0 +1,52 @@
+<div style="display: flex;">
+    <app-sidebar></app-sidebar>
+    <form class="p-4 border rounded shadow-sm cus-form" #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && saveReference()">
+        <h3 class="mb-4">Add Reference</h3>
+        <div *ngFor="let item of getReferencesModel.references; let i=index" class="input-form-button card p-3">
+          <div class="input-form">
+            <div class="mb-3 flex">
+              <div class="flex-1">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" name="name-{{i}}" [(ngModel)]="item.name" class="form-control" id="name" placeholder="Enter name" required />
+              </div>
+            
+              <div class="flex-1">
+                <label for="workplace" class="form-label">Workplace <span class="text-danger">*</span></label>
+                <input type="text" name="workPlace-{{i}}" [(ngModel)]="item.workPlace" class="form-control" id="workPlace" placeholder="Enter Workplace name (e.g., Google, NEPSE)" required />
+              </div>
+            
+              <div class="flex-1">
+                <label for="position" class="form-label">Position</label>
+                <input type="text" name="position-{{i}}" [(ngModel)]="item.position" class="form-control" id="workPlace" placeholder="Enter Postion (e.g., Manager, Sr. Developer)" required />
+              </div>
+            </div>
+            <div class="mb-3 flex">
+                <div class="flex-1">
+                    <label for="conatact" class="form-label">Phone Number</label>
+                    <input type="text" name="contact-{{i}}" [(ngModel)]="item.contactInfo" class="form-control" id="contact" placeholder="Enter phone number" required />
+                  </div>
+                  <div class="flex-1">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email-{{i}}" [(ngModel)]="item.email" class="form-control" id="email" placeholder="Enter Email " required />
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" name="description-{{i}}" [(ngModel)]="item.description" rows="2" class="form-control" id="contact" placeholder="Enter description" required ></textarea>
+            </div>
+          </div>
+          <div class="input-button">
+            <button type="button" *ngIf="item.id !='00000000-0000-0000-0000-000000000000'" (click)="updatePersanalInfo(item)"
+          class="btn btn-info">Update</button>
+        <button type="button" (click)="deletePersanalInfo(item.id, getReferencesModel.references.indexOf(item))"
+          class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <!-- Skill Type -->
+        
+        <!-- Submit Button -->
+        <button (click)="addReference()" type="button" class="btn btn-success">Add</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+</div>

@@ -10,6 +10,11 @@ export interface PersonalInfo {
     dateOfBirth: Date | null;
     gender: number | 0;
     shortText: string | null;
+    email:string | null;
+    nationality:string | null;
+    hobbies:string[] | [];
+    languages:string[] | [];
+    workAvailabilityStatus: number | 0;
 }
 
 export interface Education {
@@ -67,4 +72,18 @@ export interface SupportUrl {
 
 export interface GetSupportUrls {
     supportUrls: SupportUrl[];
+}
+
+export interface Reference{
+    id: string | '00000000-0000-0000-0000-000000000000';
+    name:string;
+    position:string;
+    workPlace:string;
+    contactInfo?:string | null;
+    description?:string | null;
+    email?:string | null;
+}
+
+export interface GetReferences{
+    references: Reference[];
 }

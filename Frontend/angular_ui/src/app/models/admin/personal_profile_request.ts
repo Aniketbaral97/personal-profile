@@ -10,6 +10,11 @@ export interface AdminPersonalInfo {
     dateOfBirth?: Date | null;
     gender: number | 0;
     shortText?: string | null;
+    email?:string | null;
+    nationality?:string | null;
+    hobbies:string[];
+    languages:string[];
+    workAvailabilityStatus: number | 0;
 }
 
 export interface AdminEducation {
@@ -81,4 +86,22 @@ export interface AdminGetSupportUrls {
 export interface CreateSupportUrl {
     personalInfoId: string | '00000000-0000-0000-0000-000000000000';
     supportUrls: AdminSupportUrl[];
+}
+
+export interface AdminReference{
+    id: string | '00000000-0000-0000-0000-000000000000';
+    name:string;
+    position:string;
+    workPlace:string;
+    contactInfo?:string | null;
+    description?:string | null;
+    email?:string | null;
+}
+
+export interface CreateReferences{
+    personalInfoId: string | '00000000-0000-0000-0000-000000000000';
+    references: AdminReference[];
+}
+export interface AdminGetReferences{
+    references: AdminReference[];
 }

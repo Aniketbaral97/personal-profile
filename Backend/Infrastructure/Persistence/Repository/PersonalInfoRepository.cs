@@ -28,6 +28,11 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             DateOfBirth = personalInfo.DateOfBirth,
             Gender = personalInfo.Gender,
             ShortText = personalInfo.ShortText,
+            Email=personalInfo.Email,
+            Hobbies=personalInfo.Hobbies,
+            Languages=personalInfo.Languages,
+            Nationality=personalInfo.Nationality,
+            WorkAvailabilityStatus=personalInfo.WorkAvailabilityStatus
         };
         _context.PersonalInfos.Add(entity);
         await _context.SaveChangesAsync();
@@ -54,7 +59,12 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             DateOfBirth = x.DateOfBirth,
             Gender = x.Gender,
             ShortText = x.ShortText,
-            Id = x.Id
+            Id = x.Id,
+            Email=x.Email,
+            Hobbies=x.Hobbies,
+            Languages=x.Languages,
+            Nationality=x.Nationality,
+            WorkAvailabilityStatus=x.WorkAvailabilityStatus
         }).FirstOrDefaultAsync() ?? null;
     }
 
@@ -70,6 +80,13 @@ public class PersonalInfoRepository : IPersonalInfoRepository
         .SetProperty(x=>x.Details,personalInfo.Details)
         .SetProperty(x=>x.DateOfBirth,personalInfo.DateOfBirth)
         .SetProperty(x=>x.Gender,personalInfo.Gender)
-        .SetProperty(x=>x.ShortText,personalInfo.ShortText));
+        .SetProperty(x=>x.ShortText,personalInfo.ShortText)
+        .SetProperty(x=>x.Email,personalInfo.Email)
+        .SetProperty(x=>x.Nationality,personalInfo.Nationality)
+        .SetProperty(x=>x.Hobbies,personalInfo.Hobbies)
+        .SetProperty(x=>x.Languages,personalInfo.Languages)
+        .SetProperty(x=>x.WorkAvailabilityStatus,personalInfo.WorkAvailabilityStatus)
+        
+        );
     }
 }

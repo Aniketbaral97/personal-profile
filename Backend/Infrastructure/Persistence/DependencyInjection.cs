@@ -25,6 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IExperienceRepository, ExperienceRepository>();
         services.AddScoped<ISkillRepository, SkillRepository>();
         services.AddScoped<ISupportUrlRepository, SupportUrlRepository>();
+        services.AddScoped<IReferenceRepository, ReferenceRepository>();
 
         return services;
     }
