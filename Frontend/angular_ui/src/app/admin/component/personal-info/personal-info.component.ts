@@ -106,7 +106,7 @@ export class PersonalInfoComponent implements OnInit {
     this.request.gender = value ? Number(value) : 0;
   }
   onWorkChange(value: string): void {
-    this.request.gender = value ? Number(value) : 0;
+    this.request.workAvailabilityStatus = value ? Number(value) : 0;
   }
   addLanguage(){
     let newItem:string="";
@@ -115,5 +115,8 @@ export class PersonalInfoComponent implements OnInit {
   addHobby(){
     let newItem:string="";
     this.request.hobbies.push(newItem)
+  }
+  trackByFn(index:number) {
+    return index;  
   }
 }

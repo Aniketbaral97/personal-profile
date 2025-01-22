@@ -35,6 +35,35 @@
             </ul>
           </div>
           <div *ngIf="personalInfo.details" class="text">{{ personalInfo.details }}</div>
+          <div>
+            <div *ngIf="personalInfo.hobbies.length>0" class="card mb-4 mt-4">
+              <div class="card-header text-white">
+                <h5 class="mb-0">Hobbies</h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li *ngFor="let hobby of personalInfo.hobbies" class="list-group-item">
+                    <i class="bi bi-star me-2 text-warning"></i>{{ hobby }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          
+            <!-- Languages Section -->
+            <div *ngIf="personalInfo.languages.length>0" class="card">
+              <div class="card-header text-white">
+                <h5 class="mb-0">Languages</h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li *ngFor="let language of personalInfo.languages" class="list-group-item">
+                    <i class="bi bi-translate me-2 text-info"></i>{{ language }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

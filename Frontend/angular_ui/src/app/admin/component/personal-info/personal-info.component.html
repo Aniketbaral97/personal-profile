@@ -57,22 +57,22 @@
           <input [maxLength]="50" name="nationality" [(ngModel)]="request.nationality" type="text" class="form-control" id="nationality" placeholder="Enter short text (optional)" />
         </div>
         <div class="flex-1">
-          <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+          <label for="address" class="form-label">Address </label>
           <input name="address" [(ngModel)]="request.address" class="form-control" id="address" placeholder="Enter address" required />
         </div>
       </div>
       <div class="mb-3 flex" >
         <div class="flex-1 ">
-          <label for="address" class="form-label">Languages <span class="text-danger">*</span></label>
-          <div *ngFor="let item of request.languages; let i=index" class="mb-1">
-            <input name="language-{{i}}" [(ngModel)]="request.languages[i]" class="form-control" id="address" placeholder="Enter Language" required />
+          <label for="language" class="form-label">Languages </label>
+          <div *ngFor="let item of request.languages; let i=index;trackBy: trackByFn" class="mb-1">
+            <input name="language-{{i}}" [(ngModel)]="request.languages[i]" class="form-control" id="language" placeholder="Enter Language" required />
           </div>
           <button (click)="addLanguage()" type="button" class="btn btn-success">Add</button>
         </div>
         <div class="flex-1 ">
-          <label for="address" class="form-label">Hobbies <span class="text-danger">*</span></label>
-          <div *ngFor="let item of request.hobbies; let i=index" class="mb-1">
-            <input name="hobbies-{{i}}" [(ngModel)]="request.hobbies[i]" class="form-control" id="address" placeholder="Enter Language" required />
+          <label for="hobby" class="form-label">Hobbies</label>
+          <div *ngFor="let item of request.hobbies; let i=index; trackBy: trackByFn" class="mb-1">
+            <input name="hobbies-{{i}}" [(ngModel)]="request.hobbies[i]" class="form-control" id="hobby-{{i}}" placeholder="Enter your hobby" required />
           </div>
           <button (click)="addHobby()" type="button" class="btn btn-success">Add</button>
         </div>
