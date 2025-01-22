@@ -4,17 +4,30 @@
             <div class="pg-sub-title">Education</div>
             <div class="pg-title">My Educational Background</div>
         </div>
-        <div *ngFor="let education of educations.educations" class="education-item">
-            <div *ngIf="education.institution" class="edu-value">{{education.institution}}</div>
-            <div *ngIf="education.degree" class="edu-value">{{education.degree}}</div>
-            <div *ngIf="education.duration" class="edu-value">
-                {{education.duration}} 
-                <span *ngIf="education.isCurrent" class="edu-current">(Present)</span>
+        <div *ngFor="let education of educations.educations" class="border rounded shadow-sm p-4 mb-4">
+            <div *ngIf="education.institution" class="edu-value">
+              <strong>Institution:</strong> {{ education.institution }}
             </div>
-            <div *ngIf="education.description" class="edu-value">{{education.description}}</div>
-            <div *ngIf="education.grading" class="edu-value">
-                {{education.grading}} {{getGradingTypesEnumKey(education.gradingType)}}
+            
+            <div *ngIf="education.degree" class="edu-value">
+              <strong>Degree:</strong> {{ education.degree }}
             </div>
-        </div>
+            
+            <div *ngIf="education.duration || education.isCurrent" class="edu-value">
+              <strong>Duration:</strong> 
+              <span *ngIf="education.startDate">{{ education.startDate | date: 'MMM yyyy' }}</span>
+              <span *ngIf="education.endDate"> - {{ education.endDate | date: 'MMM yyyy' }}</span>
+              <span *ngIf="education.isCurrent"> (Present)</span>
+            </div>
+            
+            <div *ngIf="education.description" class="edu-value">
+              <strong>Description:</strong> {{ education.description }}
+            </div>
+            
+            <div *ngIf="education.gradingType || education.grading" class="edu-value">
+              <strong>Grading:</strong> 
+              {{ education.grading }} {{ getGradingTypesEnumKey(education.gradingType) }}
+            </div>
+          </div>          
     </div>
 </div>

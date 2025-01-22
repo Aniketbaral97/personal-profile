@@ -4,14 +4,30 @@
             <div class="pg-sub-title">Experience</div>
             <div class="pg-title">My Professional Experience</div>
         </div>
-        <div *ngFor="let experience of experiences.experiences" class="experience-item">
-            <div *ngIf="experience.company" class="exp-value">{{experience.company}}</div>
-            <div *ngIf="experience.position" class="exp-value">{{experience.position}}</div>
-            <div *ngIf="experience.duration" class="exp-value">
-                {{experience.duration}} 
-                <span *ngIf="experience.isCurrent" class="exp-current">(Present)</span>
+        <div *ngFor="let experience of experiences.experiences" class="border rounded shadow-sm p-4 mb-4">
+            <div *ngIf="experience.company" class="exp-value">
+              <strong>Company:</strong> {{ experience.company }}
             </div>
-            <div *ngIf="experience.description" class="exp-value">{{experience.description}}</div>
-        </div>
+          
+            <div *ngIf="experience.position" class="exp-value">
+              <strong>Position:</strong> {{ experience.position }}
+            </div>
+          
+            <div *ngIf="experience.startDate || experience.endDate || experience.isCurrent" class="exp-value">
+              <strong>Duration:</strong>
+              <span *ngIf="experience.startDate">{{ experience.startDate | date: 'MMM yyyy' }}</span>
+              <span *ngIf="experience.endDate"> - {{ experience.endDate | date: 'MMM yyyy' }}</span>
+              <span *ngIf="experience.isCurrent"> (Present)</span>
+            </div>
+          
+            <div *ngIf="experience.duration" class="exp-value">
+              <strong>Duration (Text):</strong> {{ experience.duration }}
+            </div>
+          
+            <div *ngIf="experience.description" class="exp-value">
+              <strong>Description:</strong> {{ experience.description }}
+            </div>
+          </div>
+          
     </div>
 </div>
