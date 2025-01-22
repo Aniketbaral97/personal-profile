@@ -7,12 +7,12 @@ import { SupportUrlComponent } from './components/support-url/support-url.compon
 import { PersonalProfileComponent } from './components/personal-profile/personal-profile.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReferenceComponent } from './components/reference/reference.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,HeaderComponent, EducationComponent, ExperienceComponent, SkillComponent, SupportUrlComponent, PersonalProfileComponent],
+  imports: [CommonModule, HeaderComponent, EducationComponent, ExperienceComponent, SkillComponent, SupportUrlComponent, PersonalProfileComponent, ReferenceComponent],
   templateUrl: './home.component.html',
   styleUrls: ['../app.component.scss'],
   animations: [
@@ -34,14 +34,16 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('education') educationElement?: ElementRef;
   @ViewChild('experience') experienceElement?: ElementRef;
   @ViewChild('skill') skillElement?: ElementRef;
-  @ViewChild('supportUrl') supportUrlElement?: ElementRef;
+  @ViewChild('supporturl') supportUrlElement?: ElementRef;
+  @ViewChild('reference') referenceElement?: ElementRef;
   constructor(@Inject(PLATFORM_ID) private platformId: object){}
-  isVisible: { [key in 'about' | 'education' | 'experience' | 'skill' | 'supportUrl']: boolean } = {
+  isVisible: { [key in 'about' | 'education' | 'experience' | 'skill' | 'supporturl' | 'reference']: boolean } = {
     about: false,
     education: false,
     experience: false,
     skill: false,
-    supportUrl: false,
+    supporturl: false,
+    reference:false,
   };
 
   ngAfterViewInit() {
@@ -69,5 +71,6 @@ export class HomeComponent implements AfterViewInit {
     observer.observe(this.experienceElement?.nativeElement);
     observer.observe(this.skillElement?.nativeElement);
     observer.observe(this.supportUrlElement?.nativeElement);
+    observer.observe(this.referenceElement?.nativeElement);
   }
 }

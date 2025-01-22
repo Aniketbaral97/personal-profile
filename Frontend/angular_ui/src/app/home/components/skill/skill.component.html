@@ -4,16 +4,33 @@
         <div class="pg-sub-title">Skills</div>
         <div class="pg-title">My Skills</div>
       </div>
-      <div *ngFor="let skill of skills.skills" class="skill-item">
-        <div *ngIf="skill.skill" class="skill-value">
-          <div class="skill-name">{{ getSkillTypesEnumKey(skill.type) }} {{ skill.skill }}</div>
-          <div class="skill-level">
-            <div class="progress-bar" [@progressAnimation]="{ value: skill.level }">
-              <div [style.width]="getSkillLevelPercentage(skill.level) + '%'" class="progress"></div>
-            </div>
-          </div>
+      <div *ngFor="let type of Object.keys(groupedSkills)" class="skill-group mb-4">
+  <!-- Skill Type Header -->
+  <h4 class="text-primary">{{ type }}</h4>
+  
+  <!-- Skills under the Type -->
+  <div *ngFor="let skill of groupedSkills[type]" class="d-flex align-items-center mb-3">
+    <div class="flex-grow-1">
+      <h6 class="mb-1">
+        {{ skill.skill || 'Unknown Skill' }}
+      </h6>
+      <div class="progress" style="height: 10px;">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          [style.width]="getSkillLevelPercentage(skill.level) + '%'"
+          [attr.aria-valuenow]="skill.level"
+          aria-valuemin="0"
+          aria-valuemax="5"
+        >
         </div>
       </div>
+    </div>
+    <span class="ms-3 text-muted">{{ skill.level || 0 }}/5</span>
+  </div>
+</div>
+
+      
     </div>
   </div>
   

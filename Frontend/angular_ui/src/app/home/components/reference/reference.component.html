@@ -1,0 +1,24 @@
+<div *ngIf="references" class="main-content">
+    <div class="section1 p-30" id="Experience">
+        <div class="sec-title">
+            <div class="pg-sub-title">Reference</div>
+            <div class="pg-title">My References</div>
+        </div>
+        <div *ngFor="let item of references.references" class="reference-container border rounded shadow-sm p-4 mb-4">
+            <div class="d-flex align-items-center mb-3">
+                <div class="reference-icon me-3">
+                    <i class="bi bi-journal-text fs-2 text-primary"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">{{ item.name }}</h5>
+                    <small class="text-muted">{{ item.position }}</small>
+                </div>
+            </div>
+
+            <div ><strong>Workplace:</strong> {{ item.workPlace }}</div>
+            <div *ngIf="item.contactInfo"><strong>Contact:</strong> {{ item.contactInfo }}</div>
+            <div *ngIf="item.email"><strong>Email:</strong> <a href="mailto:{{ item.email }}">{{ item.email }}</a></div>
+            <div *ngIf="item.description"><strong>Description:</strong> {{ item.description }}</div>
+        </div>
+    </div>
+</div>

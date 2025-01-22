@@ -4,13 +4,16 @@
             <div class="pg-sub-title">Support URLs</div>
             <div class="pg-title">Support & Resources</div>
         </div>
-        <div *ngFor="let supportUrl of supportUrls.supportUrls" class="support-url-item">
-            <div *ngIf="supportUrl.type" class="support-url-value">
-                <div class="support-url-type">{{getUrlTypesEnumKey(supportUrl.type)}}</div>
-            </div>
-            <div *ngIf="supportUrl.url" class="support-url-link">
-                <a [href]="supportUrl.url" target="_blank">{{supportUrl.url}}</a>
-            </div>
+        <div class="flex gap-5-per">
+            <div *ngFor="let supportUrl of supportUrls.supportUrls" class="mb-3 pb-2">
+                <!-- Type Section -->
+                <div *ngIf="supportUrl.type" class="mb-1 text-primary fw-bold">
+                    <a [href]="supportUrl.url" target="_blank">
+                        {{ getUrlTypesEnumKey(supportUrl.type) }}
+                    </a>
+                </div>
+              </div>
         </div>
+        
     </div>
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetManySkillDto } from '../../../models/ui/personal_infos';
+import { GetManySkillDto, Skill } from '../../../models/ui/personal_infos';
 import { SkillService } from '../../../services/skill_service';
 import { CommonModule } from '@angular/common';
-import { SkillLevel } from '../../../models/enums/enums';
+import { SkillLevel, SkillTypes } from '../../../models/enums/enums';
 import { EnumService } from '../../../services/enum_service';
 import { animate, style, transition, trigger } from '@angular/animations';
 
@@ -23,17 +23,28 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class SkillComponent implements OnInit {
   skills: GetManySkillDto = { skills: [] };
   Level: SkillLevel = SkillLevel.Beginner;
-
+  groupedSkills: { [key: string]: Skill[] } = {};
+  Object = Object; 
   constructor(private skillService: SkillService, private enumService: EnumService) {}
 
   ngOnInit(): void {
     this.fetchData();
   }
-
+  groupSkillsByType(): void {
+    this.groupedSkills = this.skills.skills.reduce((groups, skill) => {
+      const typeText = SkillTypes[skill.type] || 'Other';
+      if(!groups[typeText])
+      {
+        groups[typeText]=[]
+      }
+      groups[typeText].push(skill)
+      return groups;
+    }, {} as { [key: string]: Skill[] });
+  }
   fetchData() {
     this.skillService.getSkillByInfoId('6f9619ff-8b86-d011-b42d-00cf4fc964ff').subscribe((data) => {
       this.skills = data;
-      console.log(data);
+      this.groupSkillsByType();
     });
   }
 

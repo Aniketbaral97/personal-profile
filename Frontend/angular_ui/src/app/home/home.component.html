@@ -18,10 +18,15 @@
                 [style.visibility]="isVisible ? 'visible' : 'hidden'">
                 <app-skill></app-skill>
             </div>
-            <div id="support-url" #supportUrl [@zoomIn]="isVisible.supportUrl ? 'in' : 'void'"
+            <div id="reference" #reference [@zoomIn]="isVisible.reference ? 'in' : 'void'"
+                [style.visibility]="isVisible ? 'visible' : 'hidden'">
+                <app-reference></app-reference>
+            </div>
+            <div id="support-url" #supporturl [@zoomIn]="isVisible.supporturl ? 'in' : 'void'"
                 [style.visibility]="isVisible ? 'visible' : 'hidden'">
                 <app-support-url></app-support-url>
             </div>
+            
         </div>
     </div>
 </div>
