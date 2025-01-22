@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
+using Domain.Enums;
 
 namespace WebApi.EndPoints;
 
@@ -18,6 +19,16 @@ public static class PersonalInfoEndpoints
         IPersonalInfoService repo) =>
         {
             var response = await repo.GetPersonalInfoByIdAsync(id);
+            return Results.Ok(response);
+        });
+        group.MapGet("/", async (int offset,string? name, WorkAvailabilityStatus? status,
+        IPersonalInfoService repo) =>
+        {
+            var response = await repo.GetPersonalInfoList(new PersonalInfoDemoRequestDto(){
+                Offset=offset,
+                Name=name,
+                WorkAvailabilityStatus=status ?? 0
+            });
             return Results.Ok(response);
         });
         

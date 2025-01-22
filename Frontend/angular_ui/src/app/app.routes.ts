@@ -9,6 +9,7 @@ import { ExperienceComponent } from './admin/component/experience/experience.com
 import { SkillComponent } from './admin/component/skill/skill.component';
 import { SupportUrlComponent } from './admin/component/support-url/support-url.component';
 import { ReferenceComponent } from './admin/component/reference/reference.component';
+import { ProfilesComponent } from './admin/component/profiles/profiles.component';
 
 export const routes: Routes = [
     { path:'login', component: LoginComponent},
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path:'experience', component:ExperienceComponent,canActivate: [AuthGuard] },
     { path:'skill', component:SkillComponent,canActivate: [AuthGuard] },
     { path:'support-url', component:SupportUrlComponent,canActivate: [AuthGuard] },
-    { path:'reference', component:ReferenceComponent,canActivate: [AuthGuard] }
+    { path:'reference', component:ReferenceComponent,canActivate: [AuthGuard] },
+    { path:'profiles', component:ProfilesComponent,canActivate: [AuthGuard] }
 ];

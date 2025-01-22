@@ -35,6 +35,11 @@ public class PersonalInfoService : IPersonalInfoService
         return await _personalInfoRepository.GetPersonalInfoByIdAsync(id);
     }
 
+    public async Task<GetPersonalInfoDemoDto> GetPersonalInfoList(PersonalInfoDemoRequestDto request)
+    {
+        return await _personalInfoRepository.GetPersonalInfoList(request);
+    }
+
     public async Task<int> UpdatePersonalInfoAsync(UpdatePersonalInfoDto personalInfo)
     {
         UpdatePersonalInfoValidator validator = new();

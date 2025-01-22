@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, tap } from "rxjs";
 import { PersonalInfo } from "../models/ui/personal_infos";
 import { Injectable } from "@angular/core";
-import { AdminPersonalInfo } from "../models/admin/personal_profile_request";
+import { AdminPersonalInfo, AdminPersonalInfoDemoList, AdminPersonalInfoDemoRequest } from "../models/admin/personal_profile_request";
 import { ApiResultModel } from "../models/admin/loginRequestModel";
 import { ErrorService } from "./error_service";
 
@@ -10,11 +10,24 @@ import { ErrorService } from "./error_service";
     providedIn: 'root', // Automatically registers the service globally
 })
 export class PersonalInfoService {
-    private apiUrl = 'http://localhost:5005/api/personal-info/';
+    private apiUrl = 'http://localhost:5005/api/personal-info';
     constructor(private http: HttpClient, private errorService: ErrorService) { }
 
     getPersonalInfoById(id: string): Observable<PersonalInfo> {
-        return this.http.get<PersonalInfo>(this.apiUrl + id);
+        return this.http.get<PersonalInfo>(this.apiUrl +"/"+ id);
+    }
+    getPersonalInfo(request:AdminPersonalInfoDemoRequest): Observable<AdminPersonalInfoDemoList> {
+        
+        var url='?offset='+request.offset;
+        if(request.name != null)
+        {
+            url +="name="+request.name
+        }
+        if(request.workAvailabilityStatus > 0)
+        {
+            url += "status="+request.workAvailabilityStatus
+        }
+        return this.http.get<AdminPersonalInfoDemoList>(this.apiUrl + url);
     }
 
     createPersonalInfo(request: AdminPersonalInfo): Observable<ApiResultModel<string>> {
@@ -35,7 +48,7 @@ export class PersonalInfoService {
 
     updatePersonalInfo(request: AdminPersonalInfo): Observable<ApiResultModel<number>>{
         try{
-            return this.http.put<ApiResultModel<number>>(this.apiUrl + request.id, request)
+            return this.http.put<ApiResultModel<number>>(this.apiUrl +"/"+ request.id, request)
             .pipe(tap(),catchError((error)=>{
                 return this.errorService.catchErrorHandler(error);
             }))
@@ -47,7 +60,7 @@ export class PersonalInfoService {
 
     deletePersonalInfo(id:string): Observable<ApiResultModel<number>>{
         try{
-            return this.http.delete<ApiResultModel<number>>(this.apiUrl+id).pipe(
+            return this.http.delete<ApiResultModel<number>>(this.apiUrl+"/"+id).pipe(
                 tap(),
                 catchError((e)=>{
                     return this.errorService.catchErrorHandler(e)

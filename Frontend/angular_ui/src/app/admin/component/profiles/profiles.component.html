@@ -1,0 +1,32 @@
+<div style="display: flex;">
+    <app-sidebar></app-sidebar>
+    <div class="p-4 border rounded shadow-sm cus-form">
+        <h3 class="mb-4">Create Education Details</h3>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">SN</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Work Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of profiles.personalInfos; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ person.firstname }} {{ person.middlename || '' }} {{ person.lastname }}</td>
+                    <td>{{ person.designations }}</td>
+                    <td>
+                        <span class="badge" [ngClass]="{
+                'bg-success': person.workAvailabilityStatus === 1,
+                'bg-warning': person.workAvailabilityStatus === 2,
+                'bg-danger': person.workAvailabilityStatus ===3 
+              }">
+                            {{workStatus[person.workAvailabilityStatus] }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

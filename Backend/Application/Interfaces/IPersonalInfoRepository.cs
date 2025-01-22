@@ -12,4 +12,5 @@ public interface IPersonalInfoRepository
     public Task<int> UpdatePersonalInfoAsync(UpdatePersonalInfoDto personalInfo);
     public Task<int> DeletePersonalInfoAsync(Guid id);
     public Task<PersonalInfoDto?> GetPersonalInfoByIdAsync(Guid id);
+    public Task<GetPersonalInfoDemoDto> GetPersonalInfoList(PersonalInfoDemoRequestDto request);
 }

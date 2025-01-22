@@ -68,6 +68,34 @@ public class PersonalInfoRepository : IPersonalInfoRepository
         }).FirstOrDefaultAsync() ?? null;
     }
 
+    public async Task<GetPersonalInfoDemoDto> GetPersonalInfoList(PersonalInfoDemoRequestDto request)
+    {
+        var res = new GetPersonalInfoDemoDto(){};
+        request.Offset *=request.Limit;
+        var personalInfos = await _context.PersonalInfos.ToListAsync();
+        if(request.Name != null)
+        {
+            personalInfos=personalInfos.Where(x=>x.Firstname.Contains(request.Name, StringComparison.CurrentCultureIgnoreCase) ||
+            (x.Middlename != null && x.Middlename.Contains(request.Name, StringComparison.CurrentCultureIgnoreCase)) ||
+            x.Lastname.Contains(request.Name, StringComparison.CurrentCultureIgnoreCase)).ToList();   
+        }
+        if(request.WorkAvailabilityStatus>0)
+        {
+            personalInfos = personalInfos.Where(x=>x.WorkAvailabilityStatus==request.WorkAvailabilityStatus).ToList();
+        }
+        res.TotalPages= (int)Math.Ceiling((double)personalInfos.Count / request.Limit);
+        res.PersonalInfos = personalInfos.Select(x=> new PersonalInfoDemo(){
+            Firstname =x.Firstname,
+            Lastname=x.Lastname,
+            Middlename=x.Middlename,
+            WorkAvailabilityStatus=x.WorkAvailabilityStatus,
+            Designations=x.Designations,
+            Address=x.Address
+        }).Skip(request.Offset).Take(request.Limit).ToList();
+        return res;
+
+    }
+
     public async Task<int> UpdatePersonalInfoAsync(UpdatePersonalInfoDto personalInfo)
     {
         return await _context.PersonalInfos.Where(x=>x.Id==personalInfo.Id)

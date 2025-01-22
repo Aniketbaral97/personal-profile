@@ -16,6 +16,26 @@ export interface AdminPersonalInfo {
     languages:string[];
     workAvailabilityStatus: number | 0;
 }
+export interface AdminPersonalInfoDemoList{
+    personalInfos: AdminPersonalInfoDemo[],
+    totalPages:number;
+}
+export interface AdminPersonalInfoDemo{
+    id: string | '00000000-0000-0000-0000-000000000000';
+    firstname?: string | '';
+    middlename?: string | null;
+    lastname?: string | '';
+    designations?: string | '';
+    workAvailabilityStatus: number | 0;
+    
+}
+export interface AdminPersonalInfoDemoRequest{
+    name?: string | null;
+    workAvailabilityStatus: number | 0;
+    offset:number| 0
+    
+}
+
 
 export interface AdminEducation {
     id: string | '00000000-0000-0000-0000-000000000000';
