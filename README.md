@@ -43,6 +43,11 @@ Feel free to explore and view my portfolio page or use the structure to create y
 
 The authentication feature for user creation is not completely finished yet. However, you can manually add a default user to the database by running the following SQL script.
 
+
+## Screenshots
+
+![alt text](<Screenshot 2025-01-24 115932-1.png>) ![alt text](<Screenshot 2025-01-24 115949.png>) ![alt text](<Screenshot 2025-01-24 120001.png>) ![alt text](<Screenshot 2025-01-24 120055.png>)
+
 ### SQL to Add Default User
 
 You can add the default user by executing the following SQL query:
@@ -66,12 +71,10 @@ VALUES
 
 INSERT INTO user_claims (user_id,claim_type,claim_value)  
 VALUES 
-('c5a18703-fe75-4ee7-8785-72590b11fb9d','TopicCreatorApi','Developer');\
+('c5a18703-fe75-4ee7-8785-72590b11fb9d','TopicCreatorApi','Developer');
 
 Since the password is stored in a hashed format (e.g., AQAAAAIAAYagAAAAEBXFy1UK43LeFPXeUX6a+AFPJGW3xgalkzc6SVA4wAHdwWmLKfZRqcNECHHAoDVnOg==), you will need to visit a website that allows you to hash your new password and then replace the hash in the SQL query above with your new password hash.
 
 Once the password is changed, you will be able to log in using the username admin and your newly set password. 
 
 
-## Screenshots
-![alt text](<Screenshot 2025-01-24 115932-1.png>) ![alt text](<Screenshot 2025-01-24 115949.png>) ![alt text](<Screenshot 2025-01-24 120001.png>) ![alt text](<Screenshot 2025-01-24 120055.png>)
