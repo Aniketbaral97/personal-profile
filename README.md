@@ -16,6 +16,7 @@ This repository is designed to create a **personal portfolio** page that showcas
   - [Skills](#skills)
   - [References](#references)
   - [Support URL](#support-url) -->
+- [Initial Identity](#indentity-sql)
 
 ## Introduction
 Welcome to my personal profile repository! This is where I showcase details about my career, education, and skills. The repository includes sections for:
@@ -49,3 +50,36 @@ dotnet ef migrations script -c AppDbContext --project WebApi
 dotnet ef migrations add Initial -o Persistence/Context/Migrations/AppIdentityDbContexts -c AppIdentityDbContext --startup-project WebApi  --project Infrastructure/
 
 dotnet ef migrations script -c AppIdentityDbContext --project WebApi
+
+## User creation feature (Incomplete)
+
+The authentication feature for user creation is not completely finished yet. However, you can manually add a default user to the database by running the following SQL script.
+
+### SQL to Add Default User
+
+You can add the default user by executing the following SQL query:
+
+```sql
+INSERT INTO users (id ,first_name, middle_name, last_name, is_active, 
+    user_group, user_name, normalized_user_name, email, normalized_email, email_confirmed, 
+    password_hash, security_stamp, concurrency_stamp, phone_number, 
+    phone_number_confirmed, two_factor_enabled, lockout_end, lockout_enabled, 
+    access_failed_count ) 
+VALUES 
+('c5a18703-fe75-4ee7-8785-72590b11fb9d','Super','','Group',1, 1,'admin', 'ADMIN',
+'kpocompany2017@gmail.com','KPOCOMPANY2017@GMAIL.COM',true, 
+'AQAAAAIAAYagAAAAEBXFy1UK43LeFPXeUX6a+AFPJGW3xgalkzc6SVA4wAHdwWmLKfZRqcNECHHAoDVnOg==',
+ 'AMG7DXQCSZPFQ76H52DM2DEJ6EDJYH55','c5a18703-fe75-4ee7-8785-72590b11fb9d',NULL,
+ true,false,NULL,false,0);
+
+INSERT INTO user_claims(user_id,claim_type,claim_value) 
+VALUES 
+('c5a18703-fe75-4ee7-8785-72590b11fb9d','TopicCreatorApi','Admin');
+
+INSERT INTO user_claims (user_id,claim_type,claim_value)  
+VALUES 
+('c5a18703-fe75-4ee7-8785-72590b11fb9d','TopicCreatorApi','Developer');\
+
+Since the password is stored in a hashed format (e.g., AQAAAAIAAYagAAAAEBXFy1UK43LeFPXeUX6a+AFPJGW3xgalkzc6SVA4wAHdwWmLKfZRqcNECHHAoDVnOg==), you will need to visit a website that allows you to hash your new password and then replace the hash in the SQL query above with your new password hash.
+
+Once the password is changed, you will be able to log in using the username admin and your newly set password. 
