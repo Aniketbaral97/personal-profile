@@ -71,3 +71,7 @@ VALUES
 Since the password is stored in a hashed format (e.g., AQAAAAIAAYagAAAAEBXFy1UK43LeFPXeUX6a+AFPJGW3xgalkzc6SVA4wAHdwWmLKfZRqcNECHHAoDVnOg==), you will need to visit a website that allows you to hash your new password and then replace the hash in the SQL query above with your new password hash.
 
 Once the password is changed, you will be able to log in using the username admin and your newly set password. 
+
+
+## Screenshots
+![alt text](<Screenshot 2025-01-24 115932-1.png>) ![alt text](<Screenshot 2025-01-24 115949.png>) ![alt text](<Screenshot 2025-01-24 120001.png>) ![alt text](<Screenshot 2025-01-24 120055.png>)
