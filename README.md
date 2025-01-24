@@ -8,7 +8,6 @@ This repository is designed to create a **personal portfolio** page that showcas
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Migration](#migration)
 <!-- - [Sections](#sections)
   - [Personal Information](#personal-information)
   - [Education](#education)
@@ -39,17 +38,6 @@ Feel free to explore and view my portfolio page or use the structure to create y
 - **Angular** for frontend development and building interactive UIs.
 - **CSS** for styling and creating visually appealing designs.
 - **TypeScript** for writing scalable and maintainable JavaScript code in Angular.
-
-## Migration
-
-dotnet ef migrations add Initial -o Persistence/Context/Migrations/AppDbContexts -c AppDbContext --startup-project WebApi  --project Infrastructure/
-
-dotnet ef migrations script -c AppDbContext --project WebApi
-
-
-dotnet ef migrations add Initial -o Persistence/Context/Migrations/AppIdentityDbContexts -c AppIdentityDbContext --startup-project WebApi  --project Infrastructure/
-
-dotnet ef migrations script -c AppIdentityDbContext --project WebApi
 
 ## User creation feature (Incomplete)
 
