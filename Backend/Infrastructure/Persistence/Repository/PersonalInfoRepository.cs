@@ -32,7 +32,9 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             Hobbies=personalInfo.Hobbies,
             Languages=personalInfo.Languages,
             Nationality=personalInfo.Nationality,
-            WorkAvailabilityStatus=personalInfo.WorkAvailabilityStatus
+            WorkAvailabilityStatus=personalInfo.WorkAvailabilityStatus,
+            IsMain=personalInfo.IsMain
+            
         };
         _context.PersonalInfos.Add(entity);
         await _context.SaveChangesAsync();
@@ -64,7 +66,8 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             Hobbies=x.Hobbies,
             Languages=x.Languages,
             Nationality=x.Nationality,
-            WorkAvailabilityStatus=x.WorkAvailabilityStatus
+            WorkAvailabilityStatus=x.WorkAvailabilityStatus,
+            IsMain=x.IsMain
         }).FirstOrDefaultAsync() ?? null;
     }
 
@@ -90,7 +93,8 @@ public class PersonalInfoRepository : IPersonalInfoRepository
             Middlename=x.Middlename,
             WorkAvailabilityStatus=x.WorkAvailabilityStatus,
             Designations=x.Designations,
-            Address=x.Address
+            Address=x.Address,
+            IsMain=x.IsMain
         }).Skip(request.Offset).Take(request.Limit).ToList();
         return res;
 
@@ -113,8 +117,33 @@ public class PersonalInfoRepository : IPersonalInfoRepository
         .SetProperty(x=>x.Nationality,personalInfo.Nationality)
         .SetProperty(x=>x.Hobbies,personalInfo.Hobbies)
         .SetProperty(x=>x.Languages,personalInfo.Languages)
+        .SetProperty(x=>x.IsMain,personalInfo.IsMain)
         .SetProperty(x=>x.WorkAvailabilityStatus,personalInfo.WorkAvailabilityStatus)
         
         );
+    }
+    public async Task<int> UpdateIsMain(UpdateMainProfile request)
+    {
+        var res = await _context.PersonalInfos.Where(x=>x.Id==request.Id)
+        .ExecuteUpdateAsync(x=>x.SetProperty(x=>x.IsMain,request.IsMain));
+        if(res > 0 && request.IsMain)
+        {
+            await _context.PersonalInfos.Where(x=>x.Id!=request.Id && x.IsMain)
+            .ExecuteUpdateAsync(x=>x.SetProperty(x=>x.IsMain,false));
+        }
+        return res;
+    }
+    public bool CheckIsMain(Guid id){
+        return _context.PersonalInfos.Any(x=>x.Id!=id && x.IsMain==true);
+    }
+
+    public async Task<Guid> GetMainProfile()
+    {
+        var res = await _context.PersonalInfos.Where(x=>x.IsMain==true).Select(x=>x.Id).FirstOrDefaultAsync();
+        if(res==Guid.Empty)
+        {
+           res= await _context.PersonalInfos.Select(x=>x.Id).FirstOrDefaultAsync();
+        }
+        return res;
     }
 }

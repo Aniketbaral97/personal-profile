@@ -15,6 +15,7 @@ export interface PersonalInfo {
     hobbies:string[] | [];
     languages:string[] | [];
     workAvailabilityStatus: number | 0;
+    isMain:boolean
 }
 
 export interface Education {

@@ -53,6 +53,10 @@
           </select>
         </div>
         <div class="flex-1">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="request.isMain" name="isMain" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Main Profile?</label>
+        </div>
+        <div class="flex-1">
           <label for="nationality" class="form-label">Nationality</label>
           <input [maxLength]="50" name="nationality" [(ngModel)]="request.nationality" type="text" class="form-control" id="nationality" placeholder="Enter short text (optional)" />
         </div>

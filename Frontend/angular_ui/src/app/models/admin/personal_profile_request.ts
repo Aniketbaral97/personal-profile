@@ -15,6 +15,11 @@ export interface AdminPersonalInfo {
     hobbies:string[];
     languages:string[];
     workAvailabilityStatus: number | 0;
+    isMain:boolean
+}
+export interface UpdateMainProfile{
+    id: string | '00000000-0000-0000-0000-000000000000';
+    isMain:boolean
 }
 export interface AdminPersonalInfoDemoList{
     personalInfos: AdminPersonalInfoDemo[],
@@ -27,6 +32,7 @@ export interface AdminPersonalInfoDemo{
     lastname?: string | '';
     designations?: string | '';
     workAvailabilityStatus: number | 0;
+    isMain:boolean
     
 }
 export interface AdminPersonalInfoDemoRequest{

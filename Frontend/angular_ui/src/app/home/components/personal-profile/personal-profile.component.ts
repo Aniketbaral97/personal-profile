@@ -5,7 +5,7 @@ import { PersonalInfoService } from '../../../services/personalInfo_service';
 import { EnumService } from '../../../services/enum_service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SupportUrlService } from '../../../services/support_url_service';
-import { UrlTypes } from '../../../models/enums/enums';
+import { UrlTypes, WorkAvailabilityStatus } from '../../../models/enums/enums';
 
 @Component({
   selector: 'app-personal-profile',
@@ -23,6 +23,8 @@ import { UrlTypes } from '../../../models/enums/enums';
 })
 export class PersonalProfileComponent {
   personalInfo?: PersonalInfo
+  workAvailability:typeof WorkAvailabilityStatus=WorkAvailabilityStatus
+  infoId: string="00000000-0000-0000-0000-000000000000"
   urlFacebook?: string | null;
   urlInstagram?: string | null;
   urlLinkedin?: string | null;
@@ -30,19 +32,24 @@ export class PersonalProfileComponent {
   getSupportUrlModel: GetSupportUrls = { supportUrls: [] }
   constructor(private personalInfoService: PersonalInfoService, private enumService: EnumService, private supportUrlService: SupportUrlService) { }
   ngOnInit(): void {
-    this.fetchData();
-    this.fetcSkill();
+    this.fetchMainInfoId();
   }
-  public fetchData() {
-    this.personalInfoService.getPersonalInfoById('6f9619ff-8b86-d011-b42d-00cf4fc964ff').subscribe((data) => {
+  public fetchData(id:string) {
+    this.personalInfoService.getPersonalInfoById(id).subscribe((data) => {
       this.personalInfo = data;
     });
+  }
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetchData(this.infoId)
+      this.fetcSkill(this.infoId);
+    })
   }
   getGenderEnumKey(gender: number) {
     return this.enumService.getGenderEnumKey(gender)
   }
-  fetcSkill() {
-    let id = '6f9619ff-8b86-d011-b42d-00cf4fc964ff'
+  fetcSkill(id:string) {
     this.supportUrlService.getSupportUrlByInfoId(id).subscribe((data) => {
       this.getSupportUrlModel = data;
       const facebookUrl = this.getSupportUrlModel.supportUrls.find(url => url.type === UrlTypes.Facebook);

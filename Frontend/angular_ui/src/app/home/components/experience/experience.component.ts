@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExperienceService } from '../../../services/experience_service';
 import { GetExperiences } from '../../../models/ui/personal_infos';
 import { CommonModule } from '@angular/common';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-experience',
@@ -11,12 +12,19 @@ import { CommonModule } from '@angular/common';
 })
 export class ExperienceComponent implements OnInit{
   experiences : GetExperiences = {experiences:[]} 
-  constructor(private experienceService: ExperienceService){}
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private experienceService: ExperienceService, private personalInfoService: PersonalInfoService){}
   ngOnInit(): void {
-    this.fetchData();
+    this.fetchMainInfoId();
   }
-  fetchData(){
-    this.experienceService.getExperienceByInfoId('6f9619ff-8b86-d011-b42d-00cf4fc964ff').subscribe((data)=>{
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetchData(this.infoId)
+    })
+  }
+  fetchData(id: string){
+    this.experienceService.getExperienceByInfoId(id).subscribe((data)=>{
       this.experiences =data;
     })
   }

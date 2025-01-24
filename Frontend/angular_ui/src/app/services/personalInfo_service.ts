@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, tap } from "rxjs";
 import { PersonalInfo } from "../models/ui/personal_infos";
 import { Injectable } from "@angular/core";
-import { AdminPersonalInfo, AdminPersonalInfoDemoList, AdminPersonalInfoDemoRequest } from "../models/admin/personal_profile_request";
+import { AdminPersonalInfo, AdminPersonalInfoDemoList, AdminPersonalInfoDemoRequest, UpdateMainProfile } from "../models/admin/personal_profile_request";
 import { ApiResultModel } from "../models/admin/loginRequestModel";
 import { ErrorService } from "./error_service";
 
@@ -15,6 +15,9 @@ export class PersonalInfoService {
 
     getPersonalInfoById(id: string): Observable<PersonalInfo> {
         return this.http.get<PersonalInfo>(this.apiUrl +"/"+ id);
+    }
+    getMainInfoId(): Observable<string> {
+        return this.http.get<string>(this.apiUrl +"/is-main");
     }
     getPersonalInfo(request:AdminPersonalInfoDemoRequest): Observable<AdminPersonalInfoDemoList> {
         
@@ -49,6 +52,17 @@ export class PersonalInfoService {
     updatePersonalInfo(request: AdminPersonalInfo): Observable<ApiResultModel<number>>{
         try{
             return this.http.put<ApiResultModel<number>>(this.apiUrl +"/"+ request.id, request)
+            .pipe(tap(),catchError((error)=>{
+                return this.errorService.catchErrorHandler(error);
+            }))
+        }
+        catch(e){
+            return this.errorService.catchErrorHandler(e);
+        }
+    }
+    updateMainProfile(request: UpdateMainProfile): Observable<ApiResultModel<number>>{
+        try{
+            return this.http.put<ApiResultModel<number>>(this.apiUrl, request)
             .pipe(tap(),catchError((error)=>{
                 return this.errorService.catchErrorHandler(error);
             }))

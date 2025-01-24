@@ -6,6 +6,7 @@ import { UrlTypes } from '../../../models/enums/enums';
 import { AdminGetSupportUrls, AdminSupportUrl, CreateSupportUrl } from '../../../models/admin/personal_profile_request';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-support-url',
@@ -17,7 +18,8 @@ export class SupportUrlComponent implements OnInit {
   getSupportUrlModel: AdminGetSupportUrls = { supportUrls: [] }
   urlTypeOptions: { key: string, value: number }[] = [];
   urlTypes: typeof UrlTypes = UrlTypes
-  constructor(private supportUrlService: SupportUrlService, private toast: ToastrService) { }
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private supportUrlService: SupportUrlService, private toast: ToastrService, private personalInfoService: PersonalInfoService) { }
 
   ngOnInit(): void {
     this.urlTypeOptions = Object.keys(this.urlTypes).filter((key) => isNaN(Number(key))).map(
@@ -26,12 +28,17 @@ export class SupportUrlComponent implements OnInit {
         value: this.urlTypes[key as keyof typeof UrlTypes],
       })
     )
-    this.fetcSkill();
+    this.fetchMainInfoId();
   }
-  fetcSkill() {
-    let id = '6f9619ff-8b86-d011-b42d-00cf4fc964ff'
+  fetcSkill(id:string) {
     this.supportUrlService.getSupportUrlByInfoId(id).subscribe((data) => {
       this.getSupportUrlModel = data;
+    })
+  }
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetcSkill(this.infoId)
     })
   }
   addSkill() {

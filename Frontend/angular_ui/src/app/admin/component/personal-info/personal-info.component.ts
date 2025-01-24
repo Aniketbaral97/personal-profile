@@ -17,16 +17,17 @@ export class PersonalInfoComponent implements OnInit {
   genderOptions: { key: string; value: number }[] = [];
   availabiltyOptions: { key: string; value: number }[] = [];
   genderStatus: typeof Gender = Gender;
+  infoId: string="00000000-0000-0000-0000-000000000000"
   workAvailabilty: typeof WorkAvailabilityStatus = WorkAvailabilityStatus;
-  id:string='6f9619ff-8b86-d011-b42d-00cf4fc964ff';
   request: AdminPersonalInfo={
     id:'00000000-0000-0000-0000-000000000000',  
     gender:0 ,
     workAvailabilityStatus:0,
     languages:[],
-    hobbies:[]
+    hobbies:[], 
+    isMain:false
   }
-  constructor(private service: PersonalInfoService, private toast: ToastrService){}
+  constructor(private service: PersonalInfoService, private toast: ToastrService, private personalInfoService: PersonalInfoService){}
   ngOnInit(): void {
     this.genderOptions = Object.keys(this.genderStatus)
       .filter((key) => isNaN(Number(key))) // Filter out numeric keys
@@ -41,8 +42,7 @@ export class PersonalInfoComponent implements OnInit {
         value: this.workAvailabilty[key as keyof typeof WorkAvailabilityStatus],
       }));
       
-    this.request.id=this.id;
-    this.fetchPersonalInfo();
+    this.fetchMainInfoId();
     if(this.request.languages.length==0 || this.request.languages ==null)
     {
       this.addLanguage();
@@ -52,9 +52,14 @@ export class PersonalInfoComponent implements OnInit {
       this.addHobby();
     }
   }
-
-  fetchPersonalInfo(){
-    this.service.getPersonalInfoById(this.id).subscribe((data)=>{
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetchPersonalInfo(this.infoId)
+    })
+  }
+  fetchPersonalInfo(id:string){
+    this.service.getPersonalInfoById(id).subscribe((data)=>{
       this.request = data
     })
   }
@@ -90,7 +95,7 @@ export class PersonalInfoComponent implements OnInit {
   }
   deletePersanalInfo()
   {
-    this.service.deletePersonalInfo(this.id).subscribe((data)=>{
+    this.service.deletePersonalInfo(this.infoId).subscribe((data)=>{
       if(data.errors.length > 0)
       {
         for (let index = 0; index < data.errors.length; index++) {

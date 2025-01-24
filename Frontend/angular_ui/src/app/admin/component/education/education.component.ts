@@ -7,6 +7,7 @@ import { AdminEducation, AdminGetEducations, CreateEducations } from '../../../m
 import { Education } from '../../../models/ui/personal_infos';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-education',
@@ -18,8 +19,8 @@ export class EducationComponent implements OnInit {
   getEducationModel: AdminGetEducations = { educations: [] }
   gradingOptions: { key: string, value: number }[] = [];
   gradings: typeof GradingTypes = GradingTypes;
-
-  constructor(private educationService: EducationService, private toast: ToastrService) { }
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private educationService: EducationService, private toast: ToastrService, private personalInfoService: PersonalInfoService) { }
   ngOnInit(): void {
     this.gradingOptions = Object.keys(this.gradings).filter((key) => isNaN(Number(key))).map(
       (key) => ({
@@ -28,11 +29,16 @@ export class EducationComponent implements OnInit {
       })
     )
     console.log(this.gradingOptions)
-    this.fetchEducations();
+    this.fetchMainInfoId();
   }
-
-  fetchEducations() {
-    this.educationService.getEducationById('6f9619ff-8b86-d011-b42d-00cf4fc964ff').subscribe((data) => {
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetchEducations(this.infoId)
+    })
+  }
+  fetchEducations(id:string) {
+    this.educationService.getEducationById(id).subscribe((data) => {
       this.getEducationModel = data
     })
   }

@@ -4,7 +4,7 @@
         <div class="pg-sub-title">About</div>
         <div class="pg-title">My Profile</div>
       </div>
-      <div class="d-flex-align-center">
+      <div class="d-flex align-items-center">
         <div class="user-profile flex-1">
           <div class="pro-details">    
             <div class="name">
@@ -13,59 +13,81 @@
               </div>
               <div class="align-center">
                 <div *ngIf="personalInfo.shortText" class="sm-text">{{ personalInfo.shortText }}</div>
-                {{ personalInfo.firstname }} {{ personalInfo.middlename }} {{ personalInfo.lastname }}
-                <div *ngIf="personalInfo.designations" class="role">{{ personalInfo.designations }}</div>
+                <h4 class="mb-0">
+                  {{ personalInfo.firstname }} {{ personalInfo.middlename || '' }} {{ personalInfo.lastname }}
+                </h4>
+                <div *ngIf="personalInfo.designations" class="role text-muted">{{ personalInfo.designations }}</div>
               </div>
             </div>
           </div>
-          <div class="pr-list">
-            <ul>
-              <li *ngIf="personalInfo.dateOfBirth">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                {{ personalInfo.dateOfBirth }}
-              </li>
-              <li *ngIf="personalInfo.phoneNumber">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                {{ personalInfo.phoneNumber }}
-              </li>
-              <li *ngIf="personalInfo.address">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                {{ personalInfo.address }}
-              </li>
-            </ul>
-          </div>
-          <div *ngIf="personalInfo.details" class="text">{{ personalInfo.details }}</div>
-          <div>
-            <div *ngIf="personalInfo.hobbies.length>0" class="card mb-4 mt-4">
-              <div class="card-header text-white">
-                <h5 class="mb-0">Hobbies</h5>
-              </div>
-              <div class="card-body">
-                <ul class="list-group">
-                  <li *ngFor="let hobby of personalInfo.hobbies" class="list-group-item">
-                    <i class="bi bi-star me-2 text-warning"></i>{{ hobby }}
-                  </li>
-                </ul>
-              </div>
+      
+          <div class="pr-list mt-3 d-flex flex-wrap gap-3">
+            <div *ngIf="personalInfo.dateOfBirth" class="info-item">
+              <i class="fa fa-calendar text-primary me-2" aria-hidden="true"></i>
+               {{ personalInfo.dateOfBirth }}
             </div>
+            <div *ngIf="personalInfo.phoneNumber" class="info-item">
+              <i class="fa fa-phone text-success me-2" aria-hidden="true"></i>
+               {{ personalInfo.phoneNumber }}
+            </div>
+            <div *ngIf="personalInfo.address" class="info-item">
+              <i class="fa fa-map-marker text-danger me-2" aria-hidden="true"></i>
+               {{ personalInfo.address }}
+            </div>
+            <div *ngIf="personalInfo.email" class="info-item">
+              <i class="fa fa-envelope text-warning me-2" aria-hidden="true"></i>
+               <a href="mailto:{{ personalInfo.email }}">{{ personalInfo.email }}</a>
+            </div>
+            <div *ngIf="personalInfo.nationality" class="info-item">
+              <i class="fa fa-flag text-info me-2" aria-hidden="true"></i>
+               {{ personalInfo.nationality }}
+            </div>
+          </div>
+      
+          <div *ngIf="personalInfo.details" class="text mt-3">{{ personalInfo.details }}</div>
+      
+          <!-- Work Availability Section -->
+          <div class="work-availability mt-4">
+            <div class="alert" 
+                 [ngClass]="{
+                   'alert-success': personalInfo.workAvailabilityStatus == 1,
+                   'alert-danger': personalInfo.workAvailabilityStatus == 2,
+                   'alert-warning': personalInfo.workAvailabilityStatus == 3,
+                   'alert-info': personalInfo.workAvailabilityStatus != 1 && personalInfo.workAvailabilityStatus != 2 && personalInfo.workAvailabilityStatus != 3
+                 }">
+              <strong>Work Availability:</strong> {{ workAvailability[personalInfo.workAvailabilityStatus] }}
+            </div>
+          </div>
+      
+          <!-- Hobbies Section -->
+          <div *ngIf="personalInfo.hobbies.length > 0" class="card mb-4 mt-4">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Hobbies</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li *ngFor="let hobby of personalInfo.hobbies" class="list-group-item">
+                  <i class="bi bi-star me-2 text-warning"></i>{{ hobby }}
+                </li>
+              </ul>
+            </div>
+          </div>
           
-            <!-- Languages Section -->
-            <div *ngIf="personalInfo.languages.length>0" class="card">
-              <div class="card-header text-white">
-                <h5 class="mb-0">Languages</h5>
-              </div>
-              <div class="card-body">
-                <ul class="list-group">
-                  <li *ngFor="let language of personalInfo.languages" class="list-group-item">
-                    <i class="bi bi-translate me-2 text-info"></i>{{ language }}
-                  </li>
-                </ul>
-              </div>
+          <!-- Languages Section -->
+          <div *ngIf="personalInfo.languages.length > 0" class="card">
+            <div class="card-header bg-secondary text-white">
+              <h5 class="mb-0">Languages</h5>
             </div>
-
+            <div class="card-body">
+              <ul class="list-group">
+                <li *ngFor="let language of personalInfo.languages" class="list-group-item">
+                  <i class="bi bi-translate me-2 text-info"></i>{{ language }}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
   </div>
   

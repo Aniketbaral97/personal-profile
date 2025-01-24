@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AdminGetReferences, AdminReference, CreateReferences } from '../../../models/admin/personal_profile_request';
 import { ReferenceService } from '../../../services/reference_service';
 import { ToastrService } from 'ngx-toastr';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-reference',
@@ -14,15 +15,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReferenceComponent {
   getReferencesModel: AdminGetReferences = { references: [] }
-  constructor(private referenceService: ReferenceService, private toast: ToastrService) { }
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private referenceService: ReferenceService, private toast: ToastrService, private personalInfoService: PersonalInfoService) { }
 
   ngOnInit(): void {
-    this.fetcReference();
+    this.fetchMainInfoId();
   }
-  fetcReference() {
-    let id = '6f9619ff-8b86-d011-b42d-00cf4fc964ff'
+  fetcReference(id:string) {
     this.referenceService.getReferenceByInfoId(id).subscribe((data) => {
       this.getReferencesModel = data;
+    })
+  }
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetcReference(this.infoId)
     })
   }
   addReference() {

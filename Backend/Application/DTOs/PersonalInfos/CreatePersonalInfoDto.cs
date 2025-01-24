@@ -19,4 +19,5 @@ public class CreatePersonalInfoDto
     public string[] Hobbies { get; set; }=[];
     public string[] Languages { get; set; }=[];
     public WorkAvailabilityStatus WorkAvailabilityStatus {get;set;} = WorkAvailabilityStatus.Available;
+    public bool IsMain{get;set;}=false;
 }

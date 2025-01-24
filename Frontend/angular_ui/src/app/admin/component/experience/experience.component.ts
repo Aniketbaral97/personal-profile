@@ -5,6 +5,7 @@ import { ExperienceService } from '../../../services/experience_service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-experience',
@@ -14,12 +15,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class ExperienceComponent implements OnInit {
   getExperienceModel: AdminGetExperiences={experiences:[]}
-  constructor(private experienceService:ExperienceService, private toast:ToastrService){}
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private experienceService:ExperienceService, private toast:ToastrService, private personalInfoService: PersonalInfoService){}
   ngOnInit(): void {
-    this.fetcExperience();
+    this.fetchMainInfoId();
   }
-  fetcExperience(){
-    let id='6f9619ff-8b86-d011-b42d-00cf4fc964ff'
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetcExperience(this.infoId)
+    })
+  }
+  fetcExperience(id:string){
     this.experienceService.getExperienceByInfoId(id).subscribe((data)=>{
       this.getExperienceModel =data;
     })

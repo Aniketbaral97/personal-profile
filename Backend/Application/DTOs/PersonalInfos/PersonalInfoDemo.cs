@@ -12,10 +12,15 @@ public class PersonalInfoDemo{
     public string? PhoneNumber { get; set; }
     public DateOnly DateOfBirth { get; set; }
     public WorkAvailabilityStatus WorkAvailabilityStatus {get;set;} = WorkAvailabilityStatus.Available;
+    public bool IsMain{get;set;}=false;
 }
 public class GetPersonalInfoDemoDto{
     public int TotalPages{get;set;}
     public List<PersonalInfoDemo> PersonalInfos{get;set;}=[];
+}
+public class UpdateMainProfile{
+    public Guid Id{get;set;}
+    public bool IsMain{get;set;}
 }
 
 public class PersonalInfoDemoRequestDto{

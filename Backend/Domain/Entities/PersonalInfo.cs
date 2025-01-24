@@ -18,4 +18,5 @@ public class PersonalInfo : BaseEntity
     public string[] Hobbies { get; set; }=[];
     public string[] Languages { get; set; }=[];
     public WorkAvailabilityStatus WorkAvailabilityStatus {get;set;}
+    public bool IsMain{get;set;}=false;
 }

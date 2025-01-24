@@ -6,6 +6,7 @@ import { SkillService } from '../../../services/skill_service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-skill',
@@ -19,7 +20,8 @@ export class SkillComponent implements OnInit {
   skillLevelOptions:{key:string, value:number}[]=[];
   skillTypes: typeof SkillTypes =SkillTypes
   skillLevels:typeof SkillLevel =SkillLevel
-  constructor(private skillService: SkillService, private toast:ToastrService){}
+  infoId: string="00000000-0000-0000-0000-000000000000"
+  constructor(private skillService: SkillService, private toast:ToastrService, private personalInfoService: PersonalInfoService){}
 
   ngOnInit(): void {
     this.skillLevelOptions = Object.keys(this.skillLevels).filter((key) => isNaN(Number(key))).map(
@@ -34,10 +36,15 @@ export class SkillComponent implements OnInit {
             value: this.skillTypes[key as keyof typeof SkillTypes],
           })
         )
-        this.fetcSkill();
+        this.fetchMainInfoId();
       }
-    fetcSkill(){
-        let id='6f9619ff-8b86-d011-b42d-00cf4fc964ff'
+      fetchMainInfoId(){
+        this.personalInfoService.getMainInfoId().subscribe((data)=>{
+          this.infoId=data
+          this.fetcSkill(this.infoId)
+        })
+      }
+    fetcSkill(id:string){
         this.skillService.getSkillByInfoId(id).subscribe((data)=>{
           this.getSkillsModel =data;
         })

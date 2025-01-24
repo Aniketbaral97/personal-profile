@@ -9,6 +9,7 @@
                     <th scope="col">Full Name</th>
                     <th scope="col">Designation</th>
                     <th scope="col">Work Availability</th>
+                    <th scope="col">Main Profile?</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,9 @@
               }">
                             {{workStatus[person.workAvailabilityStatus] }}
                         </span>
+                    </td>
+                    <td>
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="person.isMain" name="isMain" id="flexSwitchCheckDefault">
                     </td>
                 </tr>
             </tbody>

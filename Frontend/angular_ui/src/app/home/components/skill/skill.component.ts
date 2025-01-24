@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SkillLevel, SkillTypes } from '../../../models/enums/enums';
 import { EnumService } from '../../../services/enum_service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { PersonalInfoService } from '../../../services/personalInfo_service';
 
 @Component({
   selector: 'app-skill',
@@ -23,12 +24,19 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class SkillComponent implements OnInit {
   skills: GetManySkillDto = { skills: [] };
   Level: SkillLevel = SkillLevel.Beginner;
+  infoId: string="00000000-0000-0000-0000-000000000000"
   groupedSkills: { [key: string]: Skill[] } = {};
   Object = Object; 
-  constructor(private skillService: SkillService, private enumService: EnumService) {}
+  constructor(private skillService: SkillService, private enumService: EnumService, private personalInfoService: PersonalInfoService) {}
 
   ngOnInit(): void {
-    this.fetchData();
+    this.fetchMainInfoId();
+  }
+  fetchMainInfoId(){
+    this.personalInfoService.getMainInfoId().subscribe((data)=>{
+      this.infoId=data
+      this.fetchData(this.infoId)
+    })
   }
   groupSkillsByType(): void {
     this.groupedSkills = this.skills.skills.reduce((groups, skill) => {
@@ -41,8 +49,8 @@ export class SkillComponent implements OnInit {
       return groups;
     }, {} as { [key: string]: Skill[] });
   }
-  fetchData() {
-    this.skillService.getSkillByInfoId('6f9619ff-8b86-d011-b42d-00cf4fc964ff').subscribe((data) => {
+  fetchData(id:string) {
+    this.skillService.getSkillByInfoId(id).subscribe((data) => {
       this.skills = data;
       this.groupSkillsByType();
     });

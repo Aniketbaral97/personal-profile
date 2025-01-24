@@ -21,17 +21,18 @@ public static class PersonalInfoEndpoints
             var response = await repo.GetPersonalInfoByIdAsync(id);
             return Results.Ok(response);
         });
-        group.MapGet("/", async (int offset,string? name, WorkAvailabilityStatus? status,
+        group.MapGet("/", async (int offset, string? name, WorkAvailabilityStatus? status,
         IPersonalInfoService repo) =>
         {
-            var response = await repo.GetPersonalInfoList(new PersonalInfoDemoRequestDto(){
-                Offset=offset,
-                Name=name,
-                WorkAvailabilityStatus=status ?? 0
+            var response = await repo.GetPersonalInfoList(new PersonalInfoDemoRequestDto()
+            {
+                Offset = offset,
+                Name = name,
+                WorkAvailabilityStatus = status ?? 0
             });
             return Results.Ok(response);
         });
-        
+
         group.MapPost("/", async (CreatePersonalInfoDto command,
         IPersonalInfoService service)
          =>
@@ -74,6 +75,32 @@ public static class PersonalInfoEndpoints
             }
             return Results.Ok(response);
         }).RequireAuthorization();
+        group.MapPut("/is-main", async (
+        [FromBody] UpdateMainProfile cmd, IPersonalInfoService service)
+        =>
+        {
+            var response = new ResultModel<int>();
+            try
+            {
+                var res = await service.UpdateIsMain(cmd);
+                response.SuccessResult(res);
+            }
+            catch (ValidationException e)
+            {
+                response.Errors = e.ErrorsList;
+            }
+            catch (CommandExecutionException ex)
+            {
+                response.Errors.Add(ex.Message);
+            }
+            return Results.Ok(response);
+        }).RequireAuthorization();
+        group.MapGet("/is-main", async (IPersonalInfoService service)
+        =>
+        {
+            var res = await service.GetMainProfile();
+            return Results.Ok(res);
+        });
 
         group.MapDelete("/{id:guid}", async (Guid id,
 
