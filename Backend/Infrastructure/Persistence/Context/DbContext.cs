@@ -12,12 +12,12 @@ public partial class AppDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<Education> Educations { get; set; }
-    public DbSet<Skills> Skills { get; set; }
-    public DbSet<SupportUrls> SupportUrls { get; set; }
-    public DbSet<Experience> Experiences { get; set; }
-    public DbSet<PersonalInfo> PersonalInfos { get; set; }
-    public DbSet<Reference> References { get; set; }
+    public virtual DbSet<Education> Educations { get; set; }
+    public virtual DbSet<Skills> Skills { get; set; }
+    public virtual DbSet<SupportUrls> SupportUrls { get; set; }
+    public virtual DbSet<Experience> Experiences { get; set; }
+    public virtual DbSet<PersonalInfo> PersonalInfos { get; set; }
+    public virtual DbSet<Reference> References { get; set; }
 
     public Task<int> SaveChangesAsync()
     {

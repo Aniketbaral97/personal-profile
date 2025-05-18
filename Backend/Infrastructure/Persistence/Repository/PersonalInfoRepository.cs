@@ -18,6 +18,7 @@ public class PersonalInfoRepository : IPersonalInfoRepository
     public async Task<Guid> AddPersonalInfoAsync(CreatePersonalInfoDto personalInfo)
     {
         var entity  = new PersonalInfo(){
+            Id=Guid.NewGuid(),
             Firstname = personalInfo.Firstname,
             Lastname = personalInfo.Lastname,
             Middlename = personalInfo.Middlename,
