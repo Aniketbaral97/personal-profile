@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "admin-refactor" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "admin-refactor" ]
+    branches: [ "main" ]
 
 jobs:
   backend:
@@ -108,7 +108,7 @@ jobs:
         username: ${{ env.USER }}
         key: ${{ env.KEY }}
         source: "./backend-app/*"
-        target: "/var/www/cms/personal/${{ env.ENV_PATH }}/api"
+        target: "/var/www/cms/personal/api"
 
     - name: Deploy Frontend
       uses: appleboy/scp-action@v0.1.4
@@ -117,4 +117,4 @@ jobs:
         username: ${{ env.USER }}
         key: ${{ env.KEY }}
         source: "./frontend-app/*"
-        target: "/var/www/cms/personal/${{ env.ENV_PATH }}/frontend"
+        target: "/var/www/cms/personal/frontend"
