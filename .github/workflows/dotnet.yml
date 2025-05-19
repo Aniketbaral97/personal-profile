@@ -92,14 +92,9 @@ jobs:
           exit 1
         fi
 
-    - name: Setup SSH Key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-
     - name: Add Server to known_hosts
       run: |
+        mkdir -p ~/.ssh
         ssh-keyscan -H ${{ env.HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy Backend
@@ -107,7 +102,7 @@ jobs:
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USER }}
-        key_path: ~/.ssh/id_rsa
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
         source: "./backend-app/*"
         target: "/var/www/cms/personal/api"
 
@@ -116,6 +111,6 @@ jobs:
       with:
         host: ${{ env.HOST }}
         username: ${{ env.USER }}
-        key_path: ~/.ssh/id_rsa
+        key: ${{ secrets.DEPLOY_SSH_KEY }}
         source: "./frontend-app/*"
         target: "/var/www/cms/personal/frontend"
