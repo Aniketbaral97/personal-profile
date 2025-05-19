@@ -21,13 +21,13 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore dependencies
-      run: dotnet restore Backend/backedn.sln
+      run: dotnet restore Backend/backend.sln
 
     - name: Build
-      run: dotnet build Backend/backedn.sln --no-restore
+      run: dotnet build Backend/backend.sln --no-restore
 
     - name: Test
-      run: dotnet test Backend/backedn.sln --no-build --verbosity normal
+      run: dotnet test Backend/backend.sln --no-build --verbosity normal
 
     - name: Publish Backend
       run: |
